@@ -328,7 +328,7 @@ export default function Portfolio() {
                 <img
                   src="https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg"
                   alt="Adepu Sanjay"
-                  className="w-48 h-36 sm:w-64 sm:h-48 lg:w-80 lg:h-60 object-cover rounded-lg border-2 border-black"
+                  className="w-53 h-43 sm:w-68 sm:h-52 lg:w-84 lg:h-64 object-cover rounded-lg border-2 border-black"
                 />
               </div>
             </motion.div>

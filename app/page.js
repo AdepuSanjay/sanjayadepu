@@ -318,20 +318,20 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex justify-center lg:justify-end order-1 lg:order-2"
-            >
-              <div className="relative">
-                <img
-                  src="https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg"
-                  alt="Adepu Sanjay"
-                  className="w-50 h-40 sm:w-64 sm:h-48 lg:w-80 lg:h-60object-cover rounded-lg border-2 border-black"
-                />
-              </div>
-            </motion.div>
+         <motion.div
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, delay: 0.4 }}
+  className="flex justify-center lg:justify-end order-1 lg:order-2"
+>
+  <div className="relative">
+    <img
+      src="https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg"
+      alt="Adepu Sanjay"
+      className="w-40 h-40 sm:w-48 sm:h-48 lg:w-60 lg:h-60 object-cover rounded-full border-4 border-white shadow-xl"
+    />
+  </div>
+</motion.div>
           </div>
         </div>
       </section>

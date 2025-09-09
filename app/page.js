@@ -31,6 +31,7 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedFilter, setSelectedFilter] = useState('all')
 
+  // Navigation items
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
@@ -39,6 +40,7 @@ export default function Portfolio() {
     { id: 'contact', label: 'Contact' }
   ]
 
+  // Projects data
   const projects = [
     {
       id: 1,
@@ -90,11 +92,13 @@ export default function Portfolio() {
     }
   ]
 
+  // Filter projects based on selected category
   const filteredProjects =
     selectedFilter === 'all'
       ? projects
       : projects.filter((project) => project.category === selectedFilter)
 
+  // Work experience data
   const experience = [
     {
       id: 1,
@@ -133,6 +137,7 @@ export default function Portfolio() {
     }
   ]
 
+  // Animation variants
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -141,7 +146,9 @@ export default function Portfolio() {
 
   const staggerContainer = {
     animate: {
-      transition: { staggerChildren: 0.1 }
+      transition: {
+        staggerChildren: 0.1
+      }
     }
   }
 
@@ -151,23 +158,28 @@ export default function Portfolio() {
     transition: { duration: 0.6 }
   }
 
-  // ✅ JS (no TS here)
+  // Scroll to section
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId)
-    setIsMenuOpen(false)
+    setIsMenuOpen(false) // Close menu first
 
+    // Small delay to ensure menu closes before scrolling
     setTimeout(() => {
       const element = document.getElementById(sectionId)
       if (element) {
-        const headerHeight = 64
+        const headerHeight = 64 // Account for fixed header
         const elementPosition = element.getBoundingClientRect().top
         const offsetPosition = elementPosition + window.pageYOffset - headerHeight
 
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
       }
     }, 100)
   }
 
+  // Handle scroll for active section
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'projects', 'skills', 'contact']
@@ -259,7 +271,7 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      {/* Hero Section (no image here) */}
+      {/* Hero Section */}
       <section id="home" className="relative z-0 pt-16 min-h-screen flex items-center">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -331,12 +343,13 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
+            {/* image removed in Hero as requested */}
             <div className="hidden lg:block" />
           </div>
         </div>
       </section>
 
-      {/* About Section (with your photo) */}
+      {/* About Section */}
       <section id="about" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
@@ -362,7 +375,7 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="space-y-4 lg:space-y-8"
             >
-              {/* Profile image */}
+              {/* Profile image moved here */}
               <div className="flex justify-center lg:justify-start">
                 <div className="relative">
                   <img
@@ -461,7 +474,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Projects */}
+      {/* Projects Section */}
       <section id="projects" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
@@ -471,13 +484,15 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-12 lg:mb-20"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">Featured Projects</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
+              Featured Projects
+            </h2>
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               A showcase of my recent work and personal projects
             </p>
           </motion.div>
 
-          {/* Filters */}
+          {/* Project Filters — fixed closing tags */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -497,4 +512,272 @@ export default function Portfolio() {
                   }`}
                 >
                   {filter.charAt(0).toUpperCase() + filter.slice(1)}
-                
+                </Button>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Projects Grid */}
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-6 lg:gap-8"
+          >
+            <AnimatePresence>
+              {filteredProjects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  variants={fadeInUp}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card className="group border border-slate-200 bg-white">
+                    <div className="aspect-video overflow-hidden relative">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <CardHeader className="pb-2 lg:pb-4">
+                      <CardTitle className="flex items-center justify-between text-base lg:text-lg">
+                        {project.title}
+                        <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-8 w-8 lg:h-9 lg:w-9 hover:bg-slate-100 rounded-full"
+                          >
+                            <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4" />
+                          </Button>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-8 w-8 lg:h-9 lg:w-9 hover:bg-slate-100 rounded-full"
+                          >
+                            <Github className="h-3 w-3 lg:h-4 lg:w-4" />
+                          </Button>
+                        </div>
+                      </CardTitle>
+                      <CardDescription className="text-xs lg:text-sm leading-relaxed">
+                        {project.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <Badge key={tag} variant="secondary" className="bg-slate-100 text-slate-700 text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 lg:mb-20"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
+              Skills & Technologies
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Technologies I work with to bring ideas to life
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+            {[
+              { icon: Code, title: 'Frontend Development', desc: 'React, Next.js, TypeScript' },
+              { icon: Server, title: 'Backend Development', desc: 'Node.js, Express, APIs' },
+              { icon: Database, title: 'Database Management', desc: 'MongoDB, MySQL, Redis' },
+              { icon: Smartphone, title: 'Mobile Development', desc: 'React Native, Flutter' }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="text-center group cursor-pointer"
+              >
+                <Card className="p-4 lg:p-8 border border-slate-200 bg-white h-full">
+                  <div className="w-12 h-12 lg:w-20 lg:h-20 mx-auto mb-3 lg:mb-6 bg-blue-100 rounded-lg lg:rounded-xl flex items-center justify-center">
+                    <item.icon className="h-6 w-6 lg:h-10 lg:w-10 text-blue-600" />
+                  </div>
+                  <h3 className="text-sm lg:text-lg font-bold text-black mb-2 lg:mb-3">{item.title}</h3>
+                  <p className="text-xs lg:text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 lg:mb-20"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 text-black">
+              Let's Work Together
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Ready to start your next project? Let's discuss how we can bring your ideas to life.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+            {/* Contact Info */}
+            <motion.div
+              variants={slideInLeft}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              className="space-y-6 lg:space-y-10"
+            >
+              <div>
+                <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-6 text-black">Get in Touch</h3>
+                <p className="text-slate-600 mb-4 lg:mb-8 text-sm lg:text-base leading-relaxed">
+                  I'm always interested in hearing about new opportunities and exciting projects.
+                  Feel free to reach out if you'd like to collaborate!
+                </p>
+              </div>
+
+              <div className="space-y-4 lg:space-y-8">
+                {[
+                  { icon: Mail, title: 'Email', value: 'adepusanjay812@gmail.com' },
+                  { icon: Phone, title: 'Phone', value: '+91 8897714968' },
+                  { icon: MapPin, title: 'Location', value: 'India' }
+                ].map((contact, index) => (
+                  <div key={index} className="flex items-center space-x-4 lg:space-x-6 group">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 bg-slate-100 border border-slate-300 rounded-lg lg:rounded-xl flex items-center justify-center">
+                      <contact.icon className="h-5 w-5 lg:h-7 lg:w-7 text-slate-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-black text-sm lg:text-base">{contact.title}</h4>
+                      <p className="text-slate-600 text-sm lg:text-base">{contact.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex space-x-4 pt-4 lg:pt-8">
+                <Button size="lg" className="flex-1 bg-black hover:bg-slate-800 h-12 lg:h-14 text-sm lg:text-base">
+                  <Github className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
+                  GitHub
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="flex-1 border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 h-12 lg:h-14 text-sm lg:text-base"
+                >
+                  <Linkedin className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
+                  LinkedIn
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border border-slate-200 bg-white">
+                <CardHeader className="pb-4 lg:pb-6">
+                  <CardTitle className="text-lg lg:text-xl text-black">Send me a message</CardTitle>
+                  <CardDescription className="text-sm lg:text-base">
+                    I'll get back to you as soon as possible
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 lg:space-y-6">
+                  <div className="grid grid-cols-2 gap-3 lg:gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="firstName" className="text-slate-700 font-medium text-xs lg:text-sm">
+                        First Name
+                      </Label>
+                      <Input id="firstName" placeholder="Your first name" className="h-10 lg:h-12 border-slate-300 text-sm" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName" className="text-slate-700 font-medium text-xs lg:text-sm">
+                        Last Name
+                      </Label>
+                      <Input id="lastName" placeholder="Your last name" className="h-10 lg:h-12 border-slate-300 text-sm" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-slate-700 font-medium text-xs lg:text-sm">Email</Label>
+                    <Input id="email" type="email" placeholder="your.email@example.com" className="h-10 lg:h-12 border-slate-300 text-sm" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="subject" className="text-slate-700 font-medium text-xs lg:text-sm">Subject</Label>
+                    <Input id="subject" placeholder="Project inquiry" className="h-10 lg:h-12 border-slate-300 text-sm" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-slate-700 font-medium text-xs lg:text-sm">Message</Label>
+                    <Textarea
+                      id="message"
+                      placeholder="Tell me about your project..."
+                      rows={4}
+                      className="border-slate-300 resize-none text-sm"
+                    />
+                  </div>
+                  <Button size="lg" className="w-full bg-black hover:bg-slate-800 h-12 lg:h-14 text-sm lg:text-base">
+                    <Send className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
+                    Send Message
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 lg:py-12 bg-white text-slate-900 border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center">
+            <p className="text-slate-600 text-sm lg:text-base">© 2024 Adepu Sanjay. All rights reserved.</p>
+            <div className="flex justify-center space-x-6 mt-4 lg:mt-6">
+              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100">
+                <Github className="h-4 w-4 lg:h-5 lg:w-5" />
+              </Button>
+              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100">
+                <Linkedin className="h-4 w-4 lg:h-5 lg:w-5" />
+              </Button>
+              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100">
+                <Mail className="h-4 w-4 lg:h-5 lg:w-5" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+                      }
+                  

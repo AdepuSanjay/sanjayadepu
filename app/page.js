@@ -1,4 +1,3 @@
-                  
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -32,6 +31,19 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedFilter, setSelectedFilter] = useState('all')
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Navigation items
   const navItems = [
@@ -102,14 +114,16 @@ export default function Portfolio() {
       title: 'MSME 2024 Grant Recipient',
       description: 'Selected for MSME 2024 with 15 Lakhs grant funds for AI Drowsiness Detection project',
       icon: Trophy,
-      date: '2024'
+      date: '2024',
+      image: null
     },
     {
       id: 2,
       title: 'MIS Portal Development Award',
       description: 'Received award for developing MIS Portal for TKRCET',
       icon: Award,
-      date: '2023'
+      date: '2023',
+      image: 'https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg'
     }
   ]
 
@@ -119,9 +133,9 @@ export default function Portfolio() {
       ? projects
       : projects.filter((project) => project.category === selectedFilter)
 
-  // Animation variants
+  // Animation variants - simplified for mobile
   const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
+    initial: isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 }
   }
@@ -135,7 +149,7 @@ export default function Portfolio() {
   }
 
   const slideInLeft = {
-    initial: { opacity: 0, x: -60 },
+    initial: isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 },
     animate: { opacity: 1, x: 0 },
     transition: { duration: 0.6 }
   }
@@ -190,7 +204,7 @@ export default function Portfolio() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex items-center justify-between h-16">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               className="text-xl font-bold text-black"
             >
@@ -258,13 +272,13 @@ export default function Portfolio() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -60 }}
+              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               className="space-y-4 lg:space-y-8 text-center lg:text-left order-1"
             >
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
@@ -327,7 +341,7 @@ export default function Portfolio() {
 
             {/* Laptop/Device Illustration */}
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
+              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative order-2"
@@ -359,7 +373,7 @@ export default function Portfolio() {
       <section id="about" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -412,7 +426,7 @@ export default function Portfolio() {
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     viewport={{ once: true }}
@@ -426,7 +440,7 @@ export default function Portfolio() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
+              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -490,7 +504,7 @@ export default function Portfolio() {
       <section id="projects" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -506,7 +520,7 @@ export default function Portfolio() {
 
           {/* Project Filters */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             viewport={{ once: true }}
@@ -542,10 +556,10 @@ export default function Portfolio() {
                 <motion.div
                   key={project.id}
                   variants={fadeInUp}
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  whileHover={{ y: -5 }}
+                  whileHover={isMobile ? {} : { y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
                   <Card className="group border border-slate-200 bg-white">
@@ -601,7 +615,7 @@ export default function Portfolio() {
       <section id="achievements" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -619,7 +633,7 @@ export default function Portfolio() {
             {achievements.map((achievement, index) => (
               <motion.div
                 key={achievement.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
@@ -634,13 +648,24 @@ export default function Portfolio() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <achievement.icon className="h-6 w-6 text-blue-600" />
+                    <div className="flex flex-col space-y-4">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                          <achievement.icon className="h-6 w-6 text-blue-600" />
+                        </div>
+                        <p className="text-slate-600 leading-relaxed text-sm lg:text-base">
+                          {achievement.description}
+                        </p>
                       </div>
-                      <p className="text-slate-600 leading-relaxed text-sm lg:text-base">
-                        {achievement.description}
-                      </p>
+                      {achievement.image && (
+                        <div className="mt-4 border rounded-lg overflow-hidden">
+                          <img 
+                            src={achievement.image} 
+                            alt="MIS Portal Certificate" 
+                            className="w-full h-auto object-contain"
+                          />
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -654,7 +679,7 @@ export default function Portfolio() {
       <section id="skills" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -677,11 +702,11 @@ export default function Portfolio() {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
+                whileHover={isMobile ? {} : { y: -5 }}
                 className="text-center group cursor-pointer"
               >
                 <Card className="p-4 lg:p-8 border border-slate-200 bg-white h-full">
@@ -701,7 +726,7 @@ export default function Portfolio() {
       <section id="contact" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -768,7 +793,7 @@ export default function Portfolio() {
 
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
+              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}

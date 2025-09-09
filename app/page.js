@@ -1,3 +1,4 @@
+                  
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -23,7 +24,8 @@ import {
   Database,
   ChevronRight,
   Send,
-  Star
+  Award,
+  Trophy
 } from 'lucide-react'
 
 export default function Portfolio() {
@@ -36,6 +38,7 @@ export default function Portfolio() {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
+    { id: 'achievements', label: 'Achievements' },
     { id: 'skills', label: 'Skills' },
     { id: 'contact', label: 'Contact' }
   ]
@@ -92,50 +95,29 @@ export default function Portfolio() {
     }
   ]
 
+  // Achievements data
+  const achievements = [
+    {
+      id: 1,
+      title: 'MSME 2024 Grant Recipient',
+      description: 'Selected for MSME 2024 with 15 Lakhs grant funds for AI Drowsiness Detection project',
+      icon: Trophy,
+      date: '2024'
+    },
+    {
+      id: 2,
+      title: 'MIS Portal Development Award',
+      description: 'Received award for developing MIS Portal for TKRCET',
+      icon: Award,
+      date: '2023'
+    }
+  ]
+
   // Filter projects based on selected category
   const filteredProjects =
     selectedFilter === 'all'
       ? projects
       : projects.filter((project) => project.category === selectedFilter)
-
-  // Work experience data
-  const experience = [
-    {
-      id: 1,
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Solutions Inc.',
-      period: '2023 - Present',
-      description:
-        'Leading development of scalable web applications using MERN stack. Mentoring junior developers and implementing best practices.',
-      achievements: [
-        'Increased application performance by 40%',
-        'Led team of 5 developers',
-        'Implemented CI/CD pipelines'
-      ]
-    },
-    {
-      id: 2,
-      title: 'Full Stack Developer',
-      company: 'Digital Innovations Ltd.',
-      period: '2021 - 2023',
-      description:
-        'Developed responsive web applications and mobile apps. Collaborated with cross-functional teams to deliver high-quality products.',
-      achievements: [
-        'Delivered 15+ projects successfully',
-        'Reduced development time by 30%',
-        'Implemented automated testing'
-      ]
-    },
-    {
-      id: 3,
-      title: 'Junior Developer',
-      company: 'StartUp Ventures',
-      period: '2020 - 2021',
-      description:
-        'Started career building dynamic web applications with modern technologies. Focused on learning and contributing to various projects.',
-      achievements: ['Completed 10+ projects', 'Learned MERN stack', 'Contributed to open source']
-    }
-  ]
 
   // Animation variants
   const fadeInUp = {
@@ -182,7 +164,7 @@ export default function Portfolio() {
   // Handle scroll for active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'skills', 'contact']
+      const sections = ['home', 'about', 'projects', 'achievements', 'skills', 'contact']
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -343,8 +325,32 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-            {/* image removed in Hero as requested */}
-            <div className="hidden lg:block" />
+            {/* Laptop/Device Illustration */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative order-2"
+            >
+              <div className="relative mx-auto max-w-md">
+                {/* Laptop frame */}
+                <div className="relative bg-slate-800 rounded-lg p-2 lg:p-3 shadow-xl">
+                  <div className="bg-slate-900 rounded overflow-hidden aspect-video">
+                    {/* Screen content */}
+                    <div className="h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                      <div className="text-white text-center p-4">
+                        <Code className="h-12 w-12 mx-auto mb-4" />
+                        <h3 className="text-xl font-bold">Adepu Sanjay</h3>
+                        <p className="text-sm opacity-80">Full Stack Developer</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Laptop base */}
+                <div className="h-4 lg:h-6 bg-slate-700 mx-auto w-3/4 rounded-b-lg"></div>
+                <div className="h-2 lg:h-3 bg-slate-600 mx-auto w-1/2 rounded-b-lg"></div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -375,13 +381,13 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="space-y-4 lg:space-y-8"
             >
-              {/* Profile image moved here */}
+              {/* Profile image with black border */}
               <div className="flex justify-center lg:justify-start">
                 <div className="relative">
                   <img
                     src="https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg"
                     alt="Adepu Sanjay"
-                    className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 object-cover rounded-full border-4 border-white shadow-xl"
+                    className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 object-cover rounded-full border-4 border-black"
                   />
                 </div>
               </div>
@@ -426,49 +432,55 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="space-y-4 lg:space-y-6"
             >
-              <h3 className="text-xl lg:text-2xl font-bold text-black mb-4 lg:mb-8">Work Experience</h3>
-
-              {experience.map((exp, index) => (
-                <motion.div
-                  key={exp.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="border border-slate-200 bg-white">
-                    <CardHeader className="pb-2 lg:pb-4">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-base lg:text-lg text-black">{exp.title}</CardTitle>
-                          <CardDescription className="text-blue-600 font-semibold text-sm lg:text-base">
-                            {exp.company}
-                          </CardDescription>
-                        </div>
-                        <Badge
-                          variant="outline"
-                          className="bg-blue-50 text-blue-700 border-blue-200 text-xs lg:text-sm"
-                        >
-                          {exp.period}
-                        </Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <p className="text-slate-600 mb-3 lg:mb-4 leading-relaxed text-xs lg:text-sm">
-                        {exp.description}
-                      </p>
-                      <div className="space-y-1 lg:space-y-2">
-                        {exp.achievements.map((achievement, i) => (
-                          <div key={i} className="flex items-center text-xs lg:text-sm text-slate-600">
-                            <Star className="h-3 w-3 lg:h-4 lg:w-4 text-blue-500 mr-2 lg:mr-3 flex-shrink-0" />
-                            {achievement}
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+              <h3 className="text-xl lg:text-2xl font-bold text-black mb-4 lg:mb-8">My Expertise</h3>
+              
+              <div className="space-y-4">
+                <Card className="border border-slate-200 bg-white">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base lg:text-lg text-black">Full Stack Development</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-600 mb-3 leading-relaxed text-xs lg:text-sm">
+                      Building end-to-end web applications with modern technologies like React, Node.js, and MongoDB.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="secondary" className="bg-blue-100 text-blue-700">React</Badge>
+                      <Badge variant="secondary" className="bg-green-100 text-green-700">Node.js</Badge>
+                      <Badge variant="secondary" className="bg-yellow-100 text-yellow-700">MongoDB</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="border border-slate-200 bg-white">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base lg:text-lg text-black">Mobile Development</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-600 mb-3 leading-relaxed text-xs lg:text-sm">
+                      Creating cross-platform mobile applications with React Native and Flutter.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="secondary" className="bg-purple-100 text-purple-700">React Native</Badge>
+                      <Badge variant="secondary" className="bg-blue-100 text-blue-700">Flutter</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="border border-slate-200 bg-white">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base lg:text-lg text-black">AI & Machine Learning</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-600 mb-3 leading-relaxed text-xs lg:text-sm">
+                      Developing AI-powered solutions including the award-winning Drowsiness Detection system.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="secondary" className="bg-red-100 text-red-700">AI</Badge>
+                      <Badge variant="secondary" className="bg-orange-100 text-orange-700">Machine Learning</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -492,7 +504,7 @@ export default function Portfolio() {
             </p>
           </motion.div>
 
-          {/* Project Filters — fixed closing tags */}
+          {/* Project Filters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -582,6 +594,59 @@ export default function Portfolio() {
               ))}
             </AnimatePresence>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section id="achievements" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 lg:mb-20"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
+              Achievements
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Recognition for my work and contributions to the tech community
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+            {achievements.map((achievement, index) => (
+              <motion.div
+                key={achievement.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="border border-slate-200 bg-white h-full">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-lg lg:text-xl text-black">{achievement.title}</CardTitle>
+                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                        {achievement.date}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <achievement.icon className="h-6 w-6 text-blue-600" />
+                      </div>
+                      <p className="text-slate-600 leading-relaxed text-sm lg:text-base">
+                        {achievement.description}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -779,5 +844,4 @@ export default function Portfolio() {
       </footer>
     </div>
   )
-                      }
-                  
+}

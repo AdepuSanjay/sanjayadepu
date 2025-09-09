@@ -148,9 +148,15 @@ export default function Portfolio() {
     }
   }
 
-  const slideInLeft = {
-    initial: isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 },
+  const slideInRight = {
+    initial: isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 },
     animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6 }
+  }
+
+  const fadeIn = {
+    initial: isMobile ? { opacity: 1 } : { opacity: 0 },
+    animate: { opacity: 1 },
     transition: { duration: 0.6 }
   }
 
@@ -270,12 +276,12 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section id="home" className="relative z-0 pt-16 min-h-screen flex items-center">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="flex justify-center">
             <motion.div
-              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-4 lg:space-y-8 text-center lg:text-left order-1"
+              className="space-y-4 lg:space-y-8 text-center max-w-2xl"
             >
               <motion.div
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -290,7 +296,7 @@ export default function Portfolio() {
                 </Badge>
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-black leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black leading-tight">
                 Hi, I'm{' '}
                 <span className="text-black relative">
                   Adepu Sanjay
@@ -307,7 +313,7 @@ export default function Portfolio() {
                 Specialized in MERN stack, Next.js, and React Native development.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-2 lg:pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-2 lg:pt-4 justify-center">
                 <Button
                   size="lg"
                   className="bg-black hover:bg-slate-800 text-white h-10 lg:h-12 px-6 lg:px-8 text-sm lg:text-base"
@@ -326,7 +332,7 @@ export default function Portfolio() {
                 </Button>
               </div>
 
-              <div className="flex justify-center lg:justify-start space-x-4 pt-2 lg:pt-4">
+              <div className="flex justify-center space-x-4 pt-2 lg:pt-4">
                 <Button variant="ghost" size="sm" className="p-2 lg:p-3 hover:bg-slate-100 rounded-full">
                   <Github className="h-4 w-4 lg:h-5 lg:w-5" />
                 </Button>
@@ -336,33 +342,6 @@ export default function Portfolio() {
                 <Button variant="ghost" size="sm" className="p-2 lg:p-3 hover:bg-slate-100 rounded-full">
                   <Mail className="h-4 w-4 lg:h-5 lg:w-5" />
                 </Button>
-              </div>
-            </motion.div>
-
-            {/* Laptop/Device Illustration */}
-            <motion.div
-              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative order-2"
-            >
-              <div className="relative mx-auto max-w-md">
-                {/* Laptop frame */}
-                <div className="relative bg-slate-800 rounded-lg p-2 lg:p-3 shadow-xl">
-                  <div className="bg-slate-900 rounded overflow-hidden aspect-video">
-                    {/* Screen content */}
-                    <div className="h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                      <div className="text-white text-center p-4">
-                        <Code className="h-12 w-12 mx-auto mb-4" />
-                        <h3 className="text-xl font-bold">Adepu Sanjay</h3>
-                        <p className="text-sm opacity-80">Full Stack Developer</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Laptop base */}
-                <div className="h-4 lg:h-6 bg-slate-700 mx-auto w-3/4 rounded-b-lg"></div>
-                <div className="h-2 lg:h-3 bg-slate-600 mx-auto w-1/2 rounded-b-lg"></div>
               </div>
             </motion.div>
           </div>
@@ -389,19 +368,19 @@ export default function Portfolio() {
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <motion.div
-              variants={slideInLeft}
+              variants={fadeIn}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
               className="space-y-4 lg:space-y-8"
             >
-              {/* Profile image with black border */}
+              {/* Profile image without black border */}
               <div className="flex justify-center lg:justify-start">
                 <div className="relative">
                   <img
                     src="https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg"
                     alt="Adepu Sanjay"
-                    className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 object-cover rounded-full border-4 border-black"
+                    className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 object-cover rounded-full"
                   />
                 </div>
               </div>
@@ -741,11 +720,11 @@ export default function Portfolio() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-            {/* Contact Info */}
+            {/* Contact Info - Now animates from left */}
             <motion.div
-              variants={slideInLeft}
-              initial="initial"
-              whileInView="animate"
+              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="space-y-6 lg:space-y-10"
             >
@@ -791,7 +770,7 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-            {/* Contact Form */}
+            {/* Contact Form - Now animates from right */}
             <motion.div
               initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}

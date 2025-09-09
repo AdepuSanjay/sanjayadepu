@@ -1,3 +1,4 @@
+
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -8,15 +9,15 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import { 
-  Menu, 
-  X, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
-  Linkedin, 
-  ExternalLink, 
+import {
+  Menu,
+  X,
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  ExternalLink,
   Code,
   Server,
   Smartphone,
@@ -45,8 +46,10 @@ export default function Portfolio() {
     {
       id: 1,
       title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React, Node.js, and MongoDB featuring payment integration, admin dashboard, and responsive design.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop',
+      description:
+        'Full-stack e-commerce solution with React, Node.js, and MongoDB featuring payment integration, admin dashboard, and responsive design.',
+      image:
+        'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop',
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
       category: 'fullstack',
       demoUrl: '#',
@@ -55,8 +58,10 @@ export default function Portfolio() {
     {
       id: 2,
       title: 'Task Management App',
-      description: 'React Native mobile application for task management with real-time synchronization and offline capabilities.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop',
+      description:
+        'React Native mobile application for task management with real-time synchronization and offline capabilities.',
+      image:
+        'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop',
       tags: ['React Native', 'Firebase', 'Redux'],
       category: 'mobile',
       demoUrl: '#',
@@ -65,8 +70,10 @@ export default function Portfolio() {
     {
       id: 3,
       title: 'Social Media Dashboard',
-      description: 'Next.js dashboard for social media analytics with real-time data visualization and responsive charts.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
+      description:
+        'Next.js dashboard for social media analytics with real-time data visualization and responsive charts.',
+      image:
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
       tags: ['Next.js', 'Chart.js', 'API Integration'],
       category: 'frontend',
       demoUrl: '#',
@@ -75,8 +82,10 @@ export default function Portfolio() {
     {
       id: 4,
       title: 'REST API Service',
-      description: 'Scalable REST API built with Node.js and Express, featuring authentication, rate limiting, and comprehensive documentation.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
+      description:
+        'Scalable REST API built with Node.js and Express, featuring authentication, rate limiting, and comprehensive documentation.',
+      image:
+        'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
       tags: ['Node.js', 'Express', 'JWT', 'Swagger'],
       category: 'backend',
       demoUrl: '#',
@@ -85,9 +94,10 @@ export default function Portfolio() {
   ]
 
   // Filter projects based on selected category
-  const filteredProjects = selectedFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === selectedFilter)
+  const filteredProjects =
+    selectedFilter === 'all'
+      ? projects
+      : projects.filter((project) => project.category === selectedFilter)
 
   // Work experience data
   const experience = [
@@ -96,23 +106,34 @@ export default function Portfolio() {
       title: 'Senior Full Stack Developer',
       company: 'Tech Solutions Inc.',
       period: '2023 - Present',
-      description: 'Leading development of scalable web applications using MERN stack. Mentoring junior developers and implementing best practices.',
-      achievements: ['Increased application performance by 40%', 'Led team of 5 developers', 'Implemented CI/CD pipelines']
+      description:
+        'Leading development of scalable web applications using MERN stack. Mentoring junior developers and implementing best practices.',
+      achievements: [
+        'Increased application performance by 40%',
+        'Led team of 5 developers',
+        'Implemented CI/CD pipelines'
+      ]
     },
     {
       id: 2,
       title: 'Full Stack Developer',
       company: 'Digital Innovations Ltd.',
       period: '2021 - 2023',
-      description: 'Developed responsive web applications and mobile apps. Collaborated with cross-functional teams to deliver high-quality products.',
-      achievements: ['Delivered 15+ projects successfully', 'Reduced development time by 30%', 'Implemented automated testing']
+      description:
+        'Developed responsive web applications and mobile apps. Collaborated with cross-functional teams to deliver high-quality products.',
+      achievements: [
+        'Delivered 15+ projects successfully',
+        'Reduced development time by 30%',
+        'Implemented automated testing'
+      ]
     },
     {
       id: 3,
       title: 'Junior Developer',
       company: 'StartUp Ventures',
       period: '2020 - 2021',
-      description: 'Started career building dynamic web applications with modern technologies. Focused on learning and contributing to various projects.',
+      description:
+        'Started career building dynamic web applications with modern technologies. Focused on learning and contributing to various projects.',
       achievements: ['Completed 10+ projects', 'Learned MERN stack', 'Contributed to open source']
     }
   ]
@@ -139,10 +160,10 @@ export default function Portfolio() {
   }
 
   // Scroll to section
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId)
     setIsMenuOpen(false) // Close menu first
-    
+
     // Small delay to ensure menu closes before scrolling
     setTimeout(() => {
       const element = document.getElementById(sectionId)
@@ -150,7 +171,7 @@ export default function Portfolio() {
         const headerHeight = 64 // Account for fixed header
         const elementPosition = element.getBoundingClientRect().top
         const offsetPosition = elementPosition + window.pageYOffset - headerHeight
-        
+
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth'
@@ -184,10 +205,10 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-slate-200">
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-[9999] border-b border-slate-200 pointer-events-auto">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex items-center justify-between h-16">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               className="text-xl font-bold text-black"
@@ -214,10 +235,12 @@ export default function Portfolio() {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
+              onClick={() => setIsMenuOpen((v) => !v)}
+              className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
+              aria-label="Open menu"
+              aria-expanded={isMenuOpen}
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
 
@@ -250,25 +273,28 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-16 min-h-screen flex items-center">
+      <section id="home" className="relative z-0 pt-16 min-h-screen flex items-center">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-4 lg:space-y-8 text-center lg:text-left order-2 lg:order-1"
+              className="space-y-4 lg:space-y-8 text-center lg:text-left order-1"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <Badge variant="outline" className="mb-4 lg:mb-6 bg-blue-50 text-blue-700 border-blue-200">
+                <Badge
+                  variant="outline"
+                  className="mb-4 lg:mb-6 bg-blue-50 text-blue-700 border-blue-200"
+                >
                   Available for opportunities
                 </Badge>
               </motion.div>
-              
+
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-black leading-tight">
                 Hi, I'm{' '}
                 <span className="text-black relative">
@@ -276,27 +302,27 @@ export default function Portfolio() {
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-500 rounded-full"></div>
                 </span>
               </h1>
-              
+
               <p className="text-lg sm:text-xl lg:text-2xl text-slate-700 font-medium">
                 Full Stack Developer
               </p>
-              
+
               <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed">
-                Passionate about creating exceptional digital experiences with modern technologies. 
+                Passionate about creating exceptional digital experiences with modern technologies.
                 Specialized in MERN stack, Next.js, and React Native development.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-2 lg:pt-4">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-black hover:bg-slate-800 text-white h-10 lg:h-12 px-6 lg:px-8 text-sm lg:text-base"
                   onClick={() => scrollToSection('projects')}
                 >
                   View My Work
                   <ChevronRight className="ml-2 h-3 w-3 lg:h-4 lg:w-4" />
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   size="lg"
                   className="border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 h-10 lg:h-12 px-6 lg:px-8 text-sm lg:text-base"
                   onClick={() => scrollToSection('contact')}
@@ -318,26 +344,14 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-         <motion.div
-  initial={{ opacity: 0, scale: 0.8 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.8, delay: 0.4 }}
-  className="flex justify-center lg:justify-end order-1 lg:order-2"
->
-  <div className="relative">
-    <img
-      src="https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg"
-      alt="Adepu Sanjay"
-      className="w-40 h-40 sm:w-48 sm:h-48 lg:w-60 lg:h-60 object-cover rounded-full border-4 border-white shadow-xl"
-    />
-  </div>
-</motion.div>
+            {/* NOTE: image removed from Hero as requested */}
+            <div className="hidden lg:block" />
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-16 lg:py-24 bg-white border-t border-slate-200">
+      <section id="about" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -362,14 +376,25 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="space-y-4 lg:space-y-8"
             >
+              {/* Profile image moved to About */}
+              <div className="flex justify-center lg:justify-start">
+                <div className="relative">
+                  <img
+                    src="https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg"
+                    alt="Adepu Sanjay"
+                    className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 object-cover rounded-full border-4 border-white shadow-xl"
+                  />
+                </div>
+              </div>
+
               <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed">
-                I'm a passionate Full Stack Developer with a strong foundation in modern web technologies. 
-                With expertise in the MERN stack, Next.js, and React Native, I create robust and scalable 
+                I'm a passionate Full Stack Developer with a strong foundation in modern web technologies.
+                With expertise in the MERN stack, Next.js, and React Native, I create robust and scalable
                 applications that deliver exceptional user experiences.
               </p>
-              
+
               <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed">
-                I have a good attitude towards learning new technologies and solving complex problems. 
+                I have a good attitude towards learning new technologies and solving complex problems.
                 My goal is to write clean, efficient code and contribute to meaningful projects that make a difference.
               </p>
 
@@ -380,7 +405,7 @@ export default function Portfolio() {
                   { value: '10+', label: 'Technologies' },
                   { value: '100%', label: 'Client Satisfaction' }
                 ].map((stat, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -403,7 +428,7 @@ export default function Portfolio() {
               className="space-y-4 lg:space-y-6"
             >
               <h3 className="text-xl lg:text-2xl font-bold text-black mb-4 lg:mb-8">Work Experience</h3>
-              
+
               {experience.map((exp, index) => (
                 <motion.div
                   key={exp.id}
@@ -421,13 +446,18 @@ export default function Portfolio() {
                             {exp.company}
                           </CardDescription>
                         </div>
-                        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs lg:text-sm">
+                        <Badge
+                          variant="outline"
+                          className="bg-blue-50 text-blue-700 border-blue-200 text-xs lg:text-sm"
+                        >
                           {exp.period}
                         </Badge>
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <p className="text-slate-600 mb-3 lg:mb-4 leading-relaxed text-xs lg:text-sm">{exp.description}</p>
+                      <p className="text-slate-600 mb-3 lg:mb-4 leading-relaxed text-xs lg:text-sm">
+                        {exp.description}
+                      </p>
                       <div className="space-y-1 lg:space-y-2">
                         {exp.achievements.map((achievement, i) => (
                           <div key={i} className="flex items-center text-xs lg:text-sm text-slate-600">
@@ -446,7 +476,7 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
+      <section id="projects" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -455,9 +485,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-12 lg:mb-20"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
-              Featured Projects
-            </h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">Featured Projects</h2>
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               A showcase of my recent work and personal projects
             </p>
@@ -475,13 +503,11 @@ export default function Portfolio() {
               {['all', 'fullstack', 'frontend', 'backend', 'mobile'].map((filter) => (
                 <Button
                   key={filter}
-                  variant={selectedFilter === filter ? "default" : "ghost"}
+                  variant={selectedFilter === filter ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setSelectedFilter(filter)}
                   className={`px-3 lg:px-6 py-2 rounded-lg transition-all duration-200 text-xs lg:text-sm ${
-                    selectedFilter === filter 
-                      ? "bg-black hover:bg-slate-800 text-white" 
-                      : "hover:bg-slate-100"
+                    selectedFilter === filter ? 'bg-black hover:bg-slate-800 text-white' : 'hover:bg-slate-100'
                   }`}
                 >
                   {filter.charAt(0).toUpperCase() + filter.slice(1)}
@@ -521,10 +547,18 @@ export default function Portfolio() {
                       <CardTitle className="flex items-center justify-between text-base lg:text-lg">
                         {project.title}
                         <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <Button size="icon" variant="ghost" className="h-8 w-8 lg:h-9 lg:w-9 hover:bg-slate-100 rounded-full">
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-8 w-8 lg:h-9 lg:w-9 hover:bg-slate-100 rounded-full"
+                          >
                             <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4" />
                           </Button>
-                          <Button size="icon" variant="ghost" className="h-8 w-8 lg:h-9 lg:w-9 hover:bg-slate-100 rounded-full">
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-8 w-8 lg:h-9 lg:w-9 hover:bg-slate-100 rounded-full"
+                          >
                             <Github className="h-3 w-3 lg:h-4 lg:w-4" />
                           </Button>
                         </div>
@@ -551,7 +585,7 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-16 lg:py-24 bg-white border-t border-slate-200">
+      <section id="skills" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -598,7 +632,7 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 lg:py-24 bg-white border-t border-slate-200">
+      <section id="contact" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -627,7 +661,7 @@ export default function Portfolio() {
               <div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-6 text-black">Get in Touch</h3>
                 <p className="text-slate-600 mb-4 lg:mb-8 text-sm lg:text-base leading-relaxed">
-                  I'm always interested in hearing about new opportunities and exciting projects. 
+                  I'm always interested in hearing about new opportunities and exciting projects.
                   Feel free to reach out if you'd like to collaborate!
                 </p>
               </div>
@@ -655,7 +689,11 @@ export default function Portfolio() {
                   <Github className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
                   GitHub
                 </Button>
-                <Button size="lg" variant="outline" className="flex-1 border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 h-12 lg:h-14 text-sm lg:text-base">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="flex-1 border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 h-12 lg:h-14 text-sm lg:text-base"
+                >
                   <Linkedin className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
                   LinkedIn
                 </Button>
@@ -672,16 +710,22 @@ export default function Portfolio() {
               <Card className="border border-slate-200 bg-white">
                 <CardHeader className="pb-4 lg:pb-6">
                   <CardTitle className="text-lg lg:text-xl text-black">Send me a message</CardTitle>
-                  <CardDescription className="text-sm lg:text-base">I'll get back to you as soon as possible</CardDescription>
+                  <CardDescription className="text-sm lg:text-base">
+                    I'll get back to you as soon as possible
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4 lg:space-y-6">
                   <div className="grid grid-cols-2 gap-3 lg:gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName" className="text-slate-700 font-medium text-xs lg:text-sm">First Name</Label>
+                      <Label htmlFor="firstName" className="text-slate-700 font-medium text-xs lg:text-sm">
+                        First Name
+                      </Label>
                       <Input id="firstName" placeholder="Your first name" className="h-10 lg:h-12 border-slate-300 text-sm" />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="lastName" className="text-slate-700 font-medium text-xs lg:text-sm">Last Name</Label>
+                      <Label htmlFor="lastName" className="text-slate-700 font-medium text-xs lg:text-sm">
+                        Last Name
+                      </Label>
                       <Input id="lastName" placeholder="Your last name" className="h-10 lg:h-12 border-slate-300 text-sm" />
                     </div>
                   </div>
@@ -695,9 +739,9 @@ export default function Portfolio() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-slate-700 font-medium text-xs lg:text-sm">Message</Label>
-                    <Textarea 
-                      id="message" 
-                      placeholder="Tell me about your project..." 
+                    <Textarea
+                      id="message"
+                      placeholder="Tell me about your project..."
                       rows={4}
                       className="border-slate-300 resize-none text-sm"
                     />
@@ -717,9 +761,7 @@ export default function Portfolio() {
       <footer className="py-8 lg:py-12 bg-white text-slate-900 border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center">
-            <p className="text-slate-600 text-sm lg:text-base">
-              © 2024 Adepu Sanjay. All rights reserved.
-            </p>
+            <p className="text-slate-600 text-sm lg:text-base">© 2024 Adepu Sanjay. All rights reserved.</p>
             <div className="flex justify-center space-x-6 mt-4 lg:mt-6">
               <Button variant="ghost" size="sm" className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100">
                 <Github className="h-4 w-4 lg:h-5 lg:w-5" />

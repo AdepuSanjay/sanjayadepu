@@ -161,7 +161,7 @@ export default function Portfolio() {
   }
 
   // Scroll to section
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId)
     setIsMenuOpen(false) // Close menu first
 
@@ -418,8 +418,9 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
+            {/* CHANGED: My Expertise now always slides in from the RIGHT */}
             <motion.div
-              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
+              initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -764,8 +765,13 @@ export default function Portfolio() {
               </div>
             </div>
 
-            {/* Contact Form - No animation */}
-            <div>
+            {/* CHANGED: Contact Form now slides in from the RIGHT */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <Card className="border border-slate-200 bg-white">
                 <CardHeader className="pb-4 lg:pb-6">
                   <CardTitle className="text-lg lg:text-xl text-black">Send me a message</CardTitle>
@@ -811,7 +817,7 @@ export default function Portfolio() {
                   </Button>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

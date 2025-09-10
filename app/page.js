@@ -123,7 +123,7 @@ export default function Portfolio() {
       description: 'Received award for developing MIS Portal for TKRCET',
       icon: Award,
       date: '2023',
-      image: 'https://customer-assets.emergentagent.com/job_7fe2edb6-7e3e-4210-8522-8993d3f7a4f2/artifacts/2wb3megx_file_000000002f6461f799c1b6af4733c280%20%281%29.jpg'
+      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg'
     }
   ]
 

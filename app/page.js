@@ -222,7 +222,7 @@ export default function Portfolio() {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id))
+                  onClick={() => scrollToSection(item.id)}
                   className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     activeSection === item.id
                       ? 'bg-black text-white'

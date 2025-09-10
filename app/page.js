@@ -222,7 +222,7 @@ export default function Portfolio() {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => scrollToSection(item.id))
                   className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     activeSection === item.id
                       ? 'bg-black text-white'
@@ -720,14 +720,8 @@ export default function Portfolio() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-            {/* Contact Info - Now animates from left */}
-            <motion.div
-              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-6 lg:space-y-10"
-            >
+            {/* Contact Info - No animation */}
+            <div className="space-y-6 lg:space-y-10">
               <div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-6 text-black">Get in Touch</h3>
                 <p className="text-slate-600 mb-4 lg:mb-8 text-sm lg:text-base leading-relaxed">
@@ -768,15 +762,10 @@ export default function Portfolio() {
                   LinkedIn
                 </Button>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Contact Form - Now animates from right */}
-            <motion.div
-              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
+            {/* Contact Form - No animation */}
+            <div>
               <Card className="border border-slate-200 bg-white">
                 <CardHeader className="pb-4 lg:pb-6">
                   <CardTitle className="text-lg lg:text-xl text-black">Send me a message</CardTitle>
@@ -822,7 +811,7 @@ export default function Portfolio() {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

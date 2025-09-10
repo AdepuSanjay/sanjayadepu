@@ -419,13 +419,7 @@ const scrollToSection = (sectionId) => {
             </motion.div>
 
             {/* CHANGED: My Expertise now always slides in from the RIGHT */}
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-4 lg:space-y-6"
-            >
+            
               <h3 className="text-xl lg:text-2xl font-bold text-black mb-4 lg:mb-8">My Expertise</h3>
               
               <div className="space-y-4">
@@ -475,7 +469,7 @@ const scrollToSection = (sectionId) => {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
+            
           </div>
         </div>
       </section>
@@ -705,20 +699,14 @@ const scrollToSection = (sectionId) => {
       {/* Contact Section */}
       <section id="contact" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
-          <motion.div
-            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 lg:mb-20"
-          >
+          
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 text-black">
               Let's Work Together
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Ready to start your next project? Let's discuss how we can bring your ideas to life.
             </p>
-          </motion.div>
+          
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Contact Info - No animation */}
@@ -766,12 +754,7 @@ const scrollToSection = (sectionId) => {
             </div>
 
             {/* CHANGED: Contact Form now slides in from the RIGHT */}
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
+            
               <Card className="border border-slate-200 bg-white">
                 <CardHeader className="pb-4 lg:pb-6">
                   <CardTitle className="text-lg lg:text-xl text-black">Send me a message</CardTitle>
@@ -817,7 +800,7 @@ const scrollToSection = (sectionId) => {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.div>
+            
           </div>
         </div>
       </section>

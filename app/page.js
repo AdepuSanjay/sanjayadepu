@@ -161,25 +161,25 @@ export default function Portfolio() {
   }
 
   // Scroll to section
-  const scrollToSection = (sectionId: string) => {
-    setActiveSection(sectionId)
-    setIsMenuOpen(false) // Close menu first
+const scrollToSection = (sectionId) => {
+  setActiveSection(sectionId)
+  setIsMenuOpen(false) // Close menu first
 
-    // Small delay to ensure menu closes before scrolling
-    setTimeout(() => {
-      const element = document.getElementById(sectionId)
-      if (element) {
-        const headerHeight = 64 // Account for fixed header
-        const elementPosition = element.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - headerHeight
+  // Small delay to ensure menu closes before scrolling
+  setTimeout(() => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const headerHeight = 64 // Account for fixed header
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerHeight
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        })
-      }
-    }, 100)
-  }
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }, 100)
+}
 
   // Handle scroll for active section
   useEffect(() => {

@@ -61,7 +61,7 @@ export default function Portfolio() {
       id: 1,
       title: 'E-Commerce Platform',
       description:
-        'Full-stack e-commerce solution with React, Node.js, and MongoDB featuring payment integration, admin dashboard, and responsive design.',
+        'Built a full-stack e-commerce solution using React, Node.js, and MongoDB with payment integration and admin features.',
       image:
         'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop',
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
@@ -73,7 +73,7 @@ export default function Portfolio() {
       id: 2,
       title: 'Task Management App',
       description:
-        'React Native mobile application for task management with real-time synchronization and offline capabilities.',
+        'Mobile app for task management with React Native, featuring real-time sync and offline functionality.',
       image:
         'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop',
       tags: ['React Native', 'Firebase', 'Redux'],
@@ -85,7 +85,7 @@ export default function Portfolio() {
       id: 3,
       title: 'Social Media Dashboard',
       description:
-        'Next.js dashboard for social media analytics with real-time data visualization and responsive charts.',
+        'Next.js dashboard for social media analytics with data visualization and responsive charts.',
       image:
         'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
       tags: ['Next.js', 'Chart.js', 'API Integration'],
@@ -97,7 +97,7 @@ export default function Portfolio() {
       id: 4,
       title: 'REST API Service',
       description:
-        'Scalable REST API built with Node.js and Express, featuring authentication, rate limiting, and comprehensive documentation.',
+        'REST API built with Node.js and Express, featuring authentication and comprehensive documentation.',
       image:
         'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
       tags: ['Node.js', 'Express', 'JWT', 'Swagger'],
@@ -107,36 +107,29 @@ export default function Portfolio() {
     }
   ]
 
+  const achievements = [
+    {
+      id: 1,
+      title: 'AI-Driven Drowsiness Detection System | Team Member (Grant Approved - Development Phase)',
+      description: [
+        'Part of a 3-member student team that secured a ₹15 Lakh grant from the Ministry of MSME',
+        'Project focuses on road safety through AI analysis of driver alertness',
+        'Currently in research and planning phase for development'
+      ],
+      icon: Trophy,
+      date: '2024',
+      image: null
+    },
+    {
+      id: 2,
+      title: 'MIS Portal Development Award',
+      description: 'Received recognition for developing MIS Portal for TKRCET',
+      icon: Award,
+      date: '2023',
+      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg'
+    }
+  ];
 
-
-
-const achievements = [
-  {
-    id: 1,
-    title: 'AI-Driven Drowsiness Detection System | Team Member (Grant Approved - Development Phase)',
-    description: [
-      'Part of a 3-member student team that successfully secured a ₹15 Lakh grant from the Ministry of MSME for a project aimed at enhancing road safety.',
-      'Our proposed solution uses AI to analyze driver alertness and was selected for funding by a government approval committee based on its innovation and market potential.',
-      'Currently involved in the initial research and planning phase for development.'
-    ],
-    icon: Trophy,
-    date: '2024',
-    image: null
-  },
-  {
-    id: 2,
-    title: 'MIS Portal Development Award',
-    description: 'Received award for developing MIS Portal for TKRCET',
-    icon: Award,
-    date: '2023',
-    image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg'
-  }
-];
-
-
-
-
-      
   // Filter projects based on selected category
   const filteredProjects =
     selectedFilter === 'all'
@@ -171,25 +164,24 @@ const achievements = [
   }
 
   // Scroll to section
-const scrollToSection = (sectionId) => {
-  setActiveSection(sectionId)
-  setIsMenuOpen(false) // Close menu first
+  const scrollToSection = (sectionId) => {
+    setActiveSection(sectionId)
+    setIsMenuOpen(false)
 
-  // Small delay to ensure menu closes before scrolling
-  setTimeout(() => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const headerHeight = 64 // Account for fixed header
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerHeight
+    setTimeout(() => {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const headerHeight = 64
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerHeight
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-    }
-  }, 100)
-}
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
+    }, 100)
+  }
 
   // Handle scroll for active section
   useEffect(() => {
@@ -319,8 +311,8 @@ const scrollToSection = (sectionId) => {
               </p>
 
               <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed">
-                Passionate about creating exceptional digital experiences with modern technologies.
-                Specialized in MERN stack, Next.js, and React Native development.
+                I build web and mobile applications using modern technologies like React, Node.js, 
+                and React Native. Focused on creating practical solutions that work well.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-2 lg:pt-4 justify-center">
@@ -372,7 +364,7 @@ const scrollToSection = (sectionId) => {
               About Me
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Passionate full-stack developer with expertise in building scalable web and mobile applications
+              Full-stack developer with experience building web and mobile applications
             </p>
           </motion.div>
 
@@ -384,7 +376,6 @@ const scrollToSection = (sectionId) => {
               viewport={{ once: true }}
               className="space-y-4 lg:space-y-8"
             >
-              {/* Profile image without black border */}
               <div className="flex justify-center lg:justify-start">
                 <div className="relative">
                   <img
@@ -396,14 +387,13 @@ const scrollToSection = (sectionId) => {
               </div>
 
               <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed">
-                I'm a passionate Full Stack Developer with a strong foundation in modern web technologies.
-                With expertise in the MERN stack, Next.js, and React Native, I create robust and scalable
-                applications that deliver exceptional user experiences.
+                I'm a Full Stack Developer with experience in modern web technologies. I work with 
+                MERN stack, Next.js, and React Native to build applications that solve real problems.
               </p>
 
               <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed">
-                I have a good attitude towards learning new technologies and solving complex problems.
-                My goal is to write clean, efficient code and contribute to meaningful projects that make a difference.
+                I enjoy learning new technologies and working on practical solutions. My approach 
+                is to write clean, maintainable code that gets the job done.
               </p>
 
               <div className="grid grid-cols-2 gap-4 lg:gap-6 pt-4 lg:pt-6">
@@ -428,9 +418,8 @@ const scrollToSection = (sectionId) => {
               </div>
             </motion.div>
 
-            {/* CHANGED: My Expertise now always slides in from the RIGHT */}
-            
-              <h3 className="text-xl lg:text-2xl font-bold text-black mb-4 lg:mb-8">My Expertise</h3>
+            <div>
+              <h3 className="text-xl lg:text-2xl font-bold text-black mb-4 lg:mb-8">What I Do</h3>
               
               <div className="space-y-4">
                 <Card className="border border-slate-200 bg-white">
@@ -439,7 +428,7 @@ const scrollToSection = (sectionId) => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-slate-600 mb-3 leading-relaxed text-xs lg:text-sm">
-                      Building end-to-end web applications with modern technologies like React, Node.js, and MongoDB.
+                      Building web applications with React, Node.js, and MongoDB
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary" className="bg-blue-100 text-blue-700">React</Badge>
@@ -455,7 +444,7 @@ const scrollToSection = (sectionId) => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-slate-600 mb-3 leading-relaxed text-xs lg:text-sm">
-                      Creating cross-platform mobile applications with React Native and Flutter.
+                      Creating mobile applications with React Native and Flutter
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary" className="bg-purple-100 text-purple-700">React Native</Badge>
@@ -470,7 +459,7 @@ const scrollToSection = (sectionId) => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-slate-600 mb-3 leading-relaxed text-xs lg:text-sm">
-                      Developing AI-powered solutions including the award-winning Drowsiness Detection system.
+                      Working on AI solutions including the Drowsiness Detection system
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary" className="bg-red-100 text-red-700">AI</Badge>
@@ -479,7 +468,7 @@ const scrollToSection = (sectionId) => {
                   </CardContent>
                 </Card>
               </div>
-            
+            </div>
           </div>
         </div>
       </section>
@@ -495,10 +484,10 @@ const scrollToSection = (sectionId) => {
             className="text-center mb-12 lg:mb-20"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
-              Featured Projects
+              Projects
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              A showcase of my recent work and personal projects
+              Some of the work I've done recently
             </p>
           </motion.div>
 
@@ -595,82 +584,81 @@ const scrollToSection = (sectionId) => {
         </div>
       </section>
 
- {/* Achievements Section */}
-<section id="achievements" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
-  <div className="container mx-auto px-4 max-w-6xl">
-    <motion.div
-      initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="text-center mb-12 lg:mb-20"
-    >
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
-        Achievements
-      </h2>
-      <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-        Recognition for my work and contributions to the tech community
-      </p>
-    </motion.div>
+      {/* Achievements Section */}
+      <section id="achievements" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 lg:mb-20"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
+              Achievements
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Some recognition for work I've been involved with
+            </p>
+          </motion.div>
 
-    <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-      {achievements.map((achievement, index) => (
-        <motion.div
-          key={achievement.id}
-          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: index * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <Card className="border border-slate-200 bg-white h-full">
-            <CardHeader className="pb-4">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg lg:text-xl text-black">
-                  {achievement.title}
-                </CardTitle>
-                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                  {achievement.date}
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col space-y-4">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <achievement.icon className="h-6 w-6 text-blue-600" />
-                  </div>
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+            {achievements.map((achievement, index) => (
+              <motion.div
+                key={achievement.id}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="border border-slate-200 bg-white h-full">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-lg lg:text-xl text-black">
+                        {achievement.title}
+                      </CardTitle>
+                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                        {achievement.date}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-col space-y-4">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                          <achievement.icon className="h-6 w-6 text-blue-600" />
+                        </div>
 
-                  {/* Paragraph OR Bullets based on description type */}
-                  {Array.isArray(achievement.description) ? (
-                    <ul className="list-disc pl-5 text-slate-600 leading-relaxed text-sm lg:text-base space-y-1">
-                      {achievement.description.map((point, i) => (
-                        <li key={i}>{point}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-slate-600 leading-relaxed text-sm lg:text-base">
-                      {achievement.description}
-                    </p>
-                  )}
-                </div>
+                        {Array.isArray(achievement.description) ? (
+                          <ul className="list-disc pl-5 text-slate-600 leading-relaxed text-sm lg:text-base space-y-1">
+                            {achievement.description.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-slate-600 leading-relaxed text-sm lg:text-base">
+                            {achievement.description}
+                          </p>
+                        )}
+                      </div>
 
-                {achievement.image && (
-                  <div className="mt-4 border rounded-lg overflow-hidden">
-                    <img
-                      src={achievement.image}
-                      alt={achievement.title}
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+                      {achievement.image && (
+                        <div className="mt-4 border rounded-lg overflow-hidden">
+                          <img
+                            src={achievement.image}
+                            alt={achievement.title}
+                            className="w-full h-auto object-contain"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Skills Section */}
       <section id="skills" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
@@ -683,19 +671,19 @@ const scrollToSection = (sectionId) => {
             className="text-center mb-12 lg:mb-20"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
-              Skills & Technologies
+              Skills
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Technologies I work with to bring ideas to life
+              Technologies I use for building applications
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
             {[
-              { icon: Code, title: 'Frontend Development', desc: 'React, Next.js, TypeScript' },
-              { icon: Server, title: 'Backend Development', desc: 'Node.js, Express, APIs' },
-              { icon: Database, title: 'Database Management', desc: 'MongoDB, MySQL, Redis' },
-              { icon: Smartphone, title: 'Mobile Development', desc: 'React Native, Flutter' }
+              { icon: Code, title: 'Frontend', desc: 'React, Next.js, TypeScript' },
+              { icon: Server, title: 'Backend', desc: 'Node.js, Express, APIs' },
+              { icon: Database, title: 'Database', desc: 'MongoDB, MySQL, Redis' },
+              { icon: Smartphone, title: 'Mobile', desc: 'React Native, Flutter' }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -722,23 +710,19 @@ const scrollToSection = (sectionId) => {
       {/* Contact Section */}
       <section id="contact" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
         <div className="container mx-auto px-4 max-w-6xl">
-          
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 text-black">
-              Let's Work Together
-            </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to start your next project? Let's discuss how we can bring your ideas to life.
-            </p>
-          
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 text-black text-center">
+            Get In Touch
+          </h2>
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed text-center mb-12">
+            If you have a project in mind or want to discuss opportunities, feel free to reach out
+          </p>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-            {/* Contact Info - No animation */}
             <div className="space-y-6 lg:space-y-10">
               <div>
-                <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-6 text-black">Get in Touch</h3>
+                <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-6 text-black">Contact Info</h3>
                 <p className="text-slate-600 mb-4 lg:mb-8 text-sm lg:text-base leading-relaxed">
-                  I'm always interested in hearing about new opportunities and exciting projects.
-                  Feel free to reach out if you'd like to collaborate!
+                  You can reach me through these channels. I typically respond within a day.
                 </p>
               </div>
 
@@ -776,54 +760,51 @@ const scrollToSection = (sectionId) => {
               </div>
             </div>
 
-            {/* CHANGED: Contact Form now slides in from the RIGHT */}
-            
-              <Card className="border border-slate-200 bg-white">
-                <CardHeader className="pb-4 lg:pb-6">
-                  <CardTitle className="text-lg lg:text-xl text-black">Send me a message</CardTitle>
-                  <CardDescription className="text-sm lg:text-base">
-                    I'll get back to you as soon as possible
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4 lg:space-y-6">
-                  <div className="grid grid-cols-2 gap-3 lg:gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName" className="text-slate-700 font-medium text-xs lg:text-sm">
-                        First Name
-                      </Label>
-                      <Input id="firstName" placeholder="Your first name" className="h-10 lg:h-12 border-slate-300 text-sm" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName" className="text-slate-700 font-medium text-xs lg:text-sm">
-                        Last Name
-                      </Label>
-                      <Input id="lastName" placeholder="Your last name" className="h-10 lg:h-12 border-slate-300 text-sm" />
-                    </div>
+            <Card className="border border-slate-200 bg-white">
+              <CardHeader className="pb-4 lg:pb-6">
+                <CardTitle className="text-lg lg:text-xl text-black">Send a message</CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  I'll get back to you as soon as I can
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4 lg:space-y-6">
+                <div className="grid grid-cols-2 gap-3 lg:gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="firstName" className="text-slate-700 font-medium text-xs lg:text-sm">
+                      First Name
+                    </Label>
+                    <Input id="firstName" placeholder="Your first name" className="h-10 lg:h-12 border-slate-300 text-sm" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-slate-700 font-medium text-xs lg:text-sm">Email</Label>
-                    <Input id="email" type="email" placeholder="your.email@example.com" className="h-10 lg:h-12 border-slate-300 text-sm" />
+                    <Label htmlFor="lastName" className="text-slate-700 font-medium text-xs lg:text-sm">
+                      Last Name
+                    </Label>
+                    <Input id="lastName" placeholder="Your last name" className="h-10 lg:h-12 border-slate-300 text-sm" />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject" className="text-slate-700 font-medium text-xs lg:text-sm">Subject</Label>
-                    <Input id="subject" placeholder="Project inquiry" className="h-10 lg:h-12 border-slate-300 text-sm" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-slate-700 font-medium text-xs lg:text-sm">Message</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell me about your project..."
-                      rows={4}
-                      className="border-slate-300 resize-none text-sm"
-                    />
-                  </div>
-                  <Button size="lg" className="w-full bg-black hover:bg-slate-800 h-12 lg:h-14 text-sm lg:text-base">
-                    <Send className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
-                    Send Message
-                  </Button>
-                </CardContent>
-              </Card>
-            
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-slate-700 font-medium text-xs lg:text-sm">Email</Label>
+                  <Input id="email" type="email" placeholder="your.email@example.com" className="h-10 lg:h-12 border-slate-300 text-sm" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="subject" className="text-slate-700 font-medium text-xs lg:text-sm">Subject</Label>
+                  <Input id="subject" placeholder="Project inquiry" className="h-10 lg:h-12 border-slate-300 text-sm" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-slate-700 font-medium text-xs lg:text-sm">Message</Label>
+                  <Textarea
+                    id="message"
+                    placeholder="Tell me about your project..."
+                    rows={4}
+                    className="border-slate-300 resize-none text-sm"
+                  />
+                </div>
+                <Button size="lg" className="w-full bg-black hover:bg-slate-800 h-12 lg:h-14 text-sm lg:text-base">
+                  <Send className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
+                  Send Message
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

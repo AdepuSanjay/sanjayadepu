@@ -110,7 +110,28 @@ export default function Portfolio() {
 
 
 
-
+const achievements = [
+  {
+    id: 1,
+    title: 'AI-Driven Drowsiness Detection System | Team Member (Grant Approved - Development Phase)',
+    description: [
+      'Part of a 3-member student team that successfully secured a ₹15 Lakh grant from the Ministry of MSME for a project aimed at enhancing road safety.',
+      'Our proposed solution uses AI to analyze driver alertness and was selected for funding by a government approval committee based on its innovation and market potential.',
+      'Currently involved in the initial research and planning phase for development.'
+    ],
+    icon: Trophy,
+    date: '2024',
+    image: null
+  },
+  {
+    id: 2,
+    title: 'MIS Portal Development Award',
+    description: 'Received award for developing MIS Portal for TKRCET',
+    icon: Award,
+    date: '2023',
+    image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg'
+  }
+];
 
 
 

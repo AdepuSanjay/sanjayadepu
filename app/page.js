@@ -396,26 +396,7 @@ export default function Portfolio() {
                 is to write clean, maintainable code that gets the job done.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 lg:gap-6 pt-4 lg:pt-6">
-                {[
-                  { value: '3+', label: 'Years Experience' },
-                  { value: '50+', label: 'Projects Completed' },
-                  { value: '10+', label: 'Technologies' },
-                  { value: '100%', label: 'Client Satisfaction' }
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="text-center p-3 lg:p-6 rounded-lg bg-slate-50 border border-slate-200"
-                  >
-                    <div className="text-xl lg:text-3xl font-bold text-black mb-1 lg:mb-2">{stat.value}</div>
-                    <div className="text-xs lg:text-sm text-slate-600">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
+             
             </motion.div>
 
             <div>

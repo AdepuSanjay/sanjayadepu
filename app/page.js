@@ -576,7 +576,7 @@ export default function Portfolio() {
       className="text-center mb-12 lg:mb-20"
     >
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
-        Achievements
+        Achievements & Certifications
       </h2>
     </motion.div>
 

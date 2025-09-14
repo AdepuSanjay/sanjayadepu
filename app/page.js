@@ -62,8 +62,7 @@ export default function Portfolio() {
       title: 'E-Commerce Platform',
       description:
         'Built a full-stack e-commerce solution using React, Node.js, and MongoDB with payment integration and admin features.',
-      image:
-        'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop',
+      image:'https://res.cloudinary.com/dppiuypop/image/upload/v1757833890/uploads/ohu3zjtwr878q50ch0ah.jpg',
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
       category: 'fullstack',
       demoUrl: '#',
@@ -80,31 +79,8 @@ export default function Portfolio() {
       category: 'mobile',
       demoUrl: '#',
       codeUrl: '#'
-    },
-    {
-      id: 3,
-      title: 'Social Media Dashboard',
-      description:
-        'Next.js dashboard for social media analytics with data visualization and responsive charts.',
-      image:
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
-      tags: ['Next.js', 'Chart.js', 'API Integration'],
-      category: 'frontend',
-      demoUrl: '#',
-      codeUrl: '#'
-    },
-    {
-      id: 4,
-      title: 'REST API Service',
-      description:
-        'REST API built with Node.js and Express, featuring authentication and comprehensive documentation.',
-      image:
-        'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
-      tags: ['Node.js', 'Express', 'JWT', 'Swagger'],
-      category: 'backend',
-      demoUrl: '#',
-      codeUrl: '#'
     }
+    
   ]
 
   const achievements = [

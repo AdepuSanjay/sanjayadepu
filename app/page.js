@@ -83,29 +83,47 @@ export default function Portfolio() {
     
   ]
 
-  const achievements = [
-    {
-      id: 1,
-      title: 'AI-Driven Drowsiness Detection System | Team Member (Grant Approved - Development Phase)',
-      description: [
-        'Part of a 3-member student team that secured a ₹15 Lakh grant from the Ministry of MSME',
-        'Project focuses on road safety through AI analysis of driver alertness',
-        'Currently in research and planning phase for development'
-      ],
-      icon: Trophy,
-      date: '2024',
-      image: null
-    },
-    {
-      id: 2,
-      title: 'MIS Portal Development Award',
-      description: 'Received recognition for developing MIS Portal for TKRCET',
-      icon: Award,
-      date: '2023',
-      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg'
-    }
-  ];
 
+
+const achievements = [
+  {
+    id: 1,
+    title: 'AI-Driven Drowsiness Detection System | Team Member (Grant Approved - Development Phase)',
+    description: [
+      'Part of a 3-member student team that secured a ₹15 Lakh grant from the Ministry of MSME',
+      'Project focuses on road safety through AI analysis of driver alertness',
+      'Currently in research and planning phase for development'
+    ],
+    icon: Trophy,
+    date: '2024',
+    image: null
+  },
+  {
+    id: 2,
+    title: 'MIS Portal Development Award – TKRCET',
+    description: [
+      'Received recognition and certificate from TKRCET for developing the college MIS Portal (Attendance Management System)',
+      '👨‍🏫 Faculty can log in and mark attendance',
+      '🧑‍🎓 Students can check their attendance anytime',
+      '📱 Fully responsive with smooth navigation',
+      '☁️ Hosted on Vercel',
+      'Built using MERN stack (MongoDB, Express.js, React.js, Node.js)',
+      'Handled full development – frontend, backend, database, and deployment',
+      'Overcame API and UI challenges step by step',
+      'Gained experience in end-to-end planning and execution'
+    ],
+    icon: Award,
+    date: '2023',
+    image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg',
+    demoUrl: 'https://tkrcet.vercel.app'
+  }
+];
+
+
+
+
+
+  
   // Filter projects based on selected category
   const filteredProjects =
     selectedFilter === 'all'

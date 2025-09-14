@@ -1,4 +1,4 @@
-'use client'
+ok'use client'
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -578,19 +578,19 @@ const achievements = [
       {achievements.map((achievement) => (
         <Card key={achievement.id} className="border border-slate-200 bg-white">
           <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-3 text-base lg:text-lg text-black">
-              {/* Small Image or Icon Badge */}
-              {achievement.image ? (
-                <img
-                  src={achievement.image}
-                  alt={achievement.title}
-                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border border-slate-200"
-                />
-              ) : (
-                <achievement.icon className="w-6 h-6 text-slate-600" />
-              )}
-              <span className="font-semibold">{achievement.title}</span>
-            </CardTitle>
+        <CardTitle className="flex items-center gap-3 text-base lg:text-lg text-black">
+  {/* Small Image or Icon Badge */}
+  {achievement.image ? (
+    <img
+      src={achievement.image}
+      alt={achievement.title}
+      className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover border border-slate-300 shadow-sm"
+    />
+  ) : (
+    <achievement.icon className="w-5 h-5 text-slate-600" />
+  )}
+  <span className="font-semibold">{achievement.title}</span>
+</CardTitle>
             <CardDescription className="text-xs lg:text-sm leading-relaxed">
               {Array.isArray(achievement.description)
                 ? achievement.description.join(" • ")

@@ -62,7 +62,7 @@ export default function Portfolio() {
       title: 'Attendance Management Portal',
       description:
         'Built a full-stack e-commerce solution using React, Node.js, and MongoDB with payment integration and admin features.',
-      image:'https://res.cloudinary.com/dppiuypop/image/upload/v1757833890/uploads/ohu3zjtwr878q50ch0ah.jpg',
+      image:'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',
       tags: ['React', 'Node.js', 'MongoDB', 'express js','cloudnary'],
       category: 'fullstack',
       demoUrl: 'https://tkrcet.vercel.app',

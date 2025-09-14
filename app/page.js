@@ -70,13 +70,13 @@ export default function Portfolio() {
     },
     {
       id: 2,
-      title: 'Task Management App',
+      title: 'Studymate AI',
       description:
         'Mobile app for task management with React Native, featuring real-time sync and offline functionality.',
       image:
-        'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop',
-      tags: ['React Native', 'Firebase', 'Redux'],
-      category: 'mobile',
+        'https://res.cloudinary.com/dppiuypop/image/upload/v1757836739/uploads/d3cdddvp3uaputsicmmd.jpg',
+      tags: ['react js', 'nodejs', 'express', 'mongodb'],
+      category: 'fullstack',
       demoUrl: '#',
       codeUrl: '#'
     }

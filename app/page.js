@@ -681,111 +681,71 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 text-black text-center">
-            Get In Touch
-          </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed text-center mb-12">
-            If you have a project in mind or want to discuss opportunities, feel free to reach out
-          </p>
+<section id="contact" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
+  <div className="container mx-auto px-4 max-w-3xl">
+    <motion.div
+      initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center mb-12"
+    >
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4">
+        Get In Touch
+      </h2>
+      <p className="text-sm sm:text-base lg:text-lg text-slate-600">
+        Fill out the form below and I’ll get back to you soon.
+      </p>
+    </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-            <div className="space-y-6 lg:space-y-10">
-              <div>
-                <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-6 text-black">Contact Info</h3>
-                <p className="text-slate-600 mb-4 lg:mb-8 text-sm lg:text-base leading-relaxed">
-                  You can reach me through these channels. I typically respond within a day.
-                </p>
-              </div>
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault()
+        const formData = {
+          name: e.target.name.value,
+          email: e.target.email.value,
+          message: e.target.message.value,
+        }
 
-              <div className="space-y-4 lg:space-y-8">
-                {[
-                  { icon: Mail, title: 'Email', value: 'adepusanjay812@gmail.com' },
-                  { icon: Phone, title: 'Phone', value: '+91 8897714968' },
-                  { icon: MapPin, title: 'Location', value: 'India' }
-                ].map((contact, index) => (
-                  <div key={index} className="flex items-center space-x-4 lg:space-x-6 group">
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 bg-slate-100 border border-slate-300 rounded-lg lg:rounded-xl flex items-center justify-center">
-                      <contact.icon className="h-5 w-5 lg:h-7 lg:w-7 text-slate-700" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-black text-sm lg:text-base">{contact.title}</h4>
-                      <p className="text-slate-600 text-sm lg:text-base">{contact.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        const res = await fetch("https://sanjayadepu-ax58.vercel.app/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        })
 
-              <div className="flex space-x-4 pt-4 lg:pt-8">
-                <Button 
-                  size="lg" 
-                  className="flex-1 bg-black hover:bg-slate-800 h-12 lg:h-14 text-sm lg:text-base"
-                  onClick={() => window.open(socialLinks.github, '_blank')}
-                >
-                  <Github className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
-                  GitHub
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="flex-1 border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 h-12 lg:h-14 text-sm lg:text-base"
-                  onClick={() => window.open(socialLinks.linkedin, '_blank')}
-                >
-                  <Linkedin className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
-                  LinkedIn
-                </Button>
-              </div>
-            </div>
+        if (res.ok) {
+          alert("Message sent successfully ✅")
+          e.target.reset()
+        } else {
+          alert("Failed to send message ❌")
+        }
+      }}
+      className="space-y-6 bg-white shadow p-6 rounded-2xl border border-slate-200"
+    >
+      <div>
+        <Label htmlFor="name">Name</Label>
+        <Input id="name" name="name" type="text" required />
+      </div>
 
-            <Card className="border border-slate-200 bg-white">
-              <CardHeader className="pb-4 lg:pb-6">
-                <CardTitle className="text-lg lg:text-xl text-black">Send a message</CardTitle>
-                <CardDescription className="text-sm lg:text-base">
-                  I'll get back to you as soon as I can
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4 lg:space-y-6">
-                <div className="grid grid-cols-2 gap-3 lg:gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName" className="text-slate-700 font-medium text-xs lg:text-sm">
-                      First Name
-                    </Label>
-                    <Input id="firstName" placeholder="Your first name" className="h-10 lg:h-12 border-slate-300 text-sm" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName" className="text-slate-700 font-medium text-xs lg:text-sm">
-                      Last Name
-                    </Label>
-                    <Input id="lastName" placeholder="Your last name" className="h-10 lg:h-12 border-slate-300 text-sm" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-slate-700 font-medium text-xs lg:text-sm">Email</Label>
-                  <Input id="email" type="email" placeholder="your.email@example.com" className="h-10 lg:h-12 border-slate-300 text-sm" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-slate-700 font-medium text-xs lg:text-sm">Subject</Label>
-                  <Input id="subject" placeholder="Project inquiry" className="h-10 lg:h-12 border-slate-300 text-sm" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-slate-700 font-medium text-xs lg:text-sm">Message</Label>
-                  <Textarea
-                    id="message"
-                    placeholder="Tell me about your project..."
-                    rows={4}
-                    className="border-slate-300 resize-none text-sm"
-                  />
-                </div>
-                <Button size="lg" className="w-full bg-black hover:bg-slate-800 h-12 lg:h-14 text-sm lg:text-base">
-                  <Send className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
-                  Send Message
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      <div>
+        <Label htmlFor="email">Email</Label>
+        <Input id="email" name="email" type="email" required />
+      </div>
+
+      <div>
+        <Label htmlFor="message">Message</Label>
+        <Textarea id="message" name="message" rows="5" required />
+      </div>
+
+      <Button type="submit" className="bg-black text-white hover:bg-slate-800 w-full">
+        Send Message <Send className="ml-2 h-4 w-4" />
+      </Button>
+    </form>
+  </div>
+</section>
+
+
+
 
       {/* Footer */}
       <footer className="py-8 lg:py-12 bg-white text-slate-900 border-t border-slate-200">

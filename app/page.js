@@ -680,7 +680,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      // Contact Section
 <section id="contact" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
   <div className="container mx-auto px-4 max-w-3xl">
     <motion.div
@@ -694,7 +694,7 @@ export default function Portfolio() {
         Get In Touch
       </h2>
       <p className="text-sm sm:text-base lg:text-lg text-slate-600">
-        Fill out the form below and I’ll get back to you soon.
+        Fill out the form below and I'll get back to you soon.
       </p>
     </motion.div>
 
@@ -743,6 +743,8 @@ export default function Portfolio() {
     </form>
   </div>
 </section>
+
+
 
       {/* Footer */}
       <footer className="py-8 lg:py-12 bg-white text-slate-900 border-t border-slate-200">

@@ -707,7 +707,7 @@ export default function Portfolio() {
           message: e.target.message.value,
         }
 
-        const res = await fetch("/api/contact", {
+        const res = await fetch("https://sanjayadepu-ax58.vercel.app/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),

@@ -33,6 +33,13 @@ export default function Portfolio() {
   const [selectedFilter, setSelectedFilter] = useState('all')
   const [isMobile, setIsMobile] = useState(false)
 
+  // Social media links
+  const socialLinks = {
+    github: 'https://github.com/AdepuSanjay',
+    linkedin: 'https://www.linkedin.com/in/adepu-sanjay-3746662a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    email: 'mailto:adepusanjay812@gmail.com'
+  }
+
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -57,7 +64,6 @@ export default function Portfolio() {
 
   // Projects data - Added MIS Portal project
   const projects = [
-    
     {
       id: 1,
       title: 'College MIS Portal (Attendance Management System)',
@@ -66,7 +72,7 @@ export default function Portfolio() {
       image:'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',
       tags: ['React', 'Node.js', 'MongoDB', 'express js','cloudnary'],
       category: 'fullstack',
-features: [
+      features: [
         '👨‍🏫 Faculty login and attendance marking',
         '🧑‍🎓 Student attendance tracking',
         '📱 Fully responsive design',
@@ -322,13 +328,28 @@ features: [
               </div>
 
               <div className="flex justify-center space-x-4 pt-2 lg:pt-4">
-                <Button variant="ghost" size="sm" className="p-2 lg:p-3 hover:bg-slate-100 rounded-full">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 lg:p-3 hover:bg-slate-100 rounded-full"
+                  onClick={() => window.open(socialLinks.github, '_blank')}
+                >
                   <Github className="h-4 w-4 lg:h-5 lg:w-5" />
                 </Button>
-                <Button variant="ghost" size="sm" className="p-2 lg:p-3 hover:bg-slate-100 rounded-full">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 lg:p-3 hover:bg-slate-100 rounded-full"
+                  onClick={() => window.open(socialLinks.linkedin, '_blank')}
+                >
                   <Linkedin className="h-4 w-4 lg:h-5 lg:w-5" />
                 </Button>
-                <Button variant="ghost" size="sm" className="p-2 lg:p-3 hover:bg-slate-100 rounded-full">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 lg:p-3 hover:bg-slate-100 rounded-full"
+                  onClick={() => window.open(socialLinks.email, '_blank')}
+                >
                   <Mail className="h-4 w-4 lg:h-5 lg:w-5" />
                 </Button>
               </div>
@@ -595,12 +616,17 @@ features: [
                     )}
                     <span className="font-semibold">{achievement.title}</span>
                   </CardTitle>
-                  <CardDescription className="text-xs lg:text-sm leading-relaxed">
-                    {Array.isArray(achievement.description)
-                      ? achievement.description.join(" • ")
-                      : achievement.description}
-                  </CardDescription>
                 </CardHeader>
+                <CardContent className="pt-0">
+                  <ul className="text-xs lg:text-sm text-slate-600 space-y-2">
+                    {achievement.description.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="mr-2">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -692,7 +718,11 @@ features: [
               </div>
 
               <div className="flex space-x-4 pt-4 lg:pt-8">
-                <Button size="lg" className="flex-1 bg-black hover:bg-slate-800 h-12 lg:h-14 text-sm lg:text-base">
+                <Button 
+                  size="lg" 
+                  className="flex-1 bg-black hover:bg-slate-800 h-12 lg:h-14 text-sm lg:text-base"
+                  onClick={() => window.open(socialLinks.github, '_blank')}
+                >
                   <Github className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
                   GitHub
                 </Button>
@@ -700,6 +730,7 @@ features: [
                   size="lg"
                   variant="outline"
                   className="flex-1 border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 h-12 lg:h-14 text-sm lg:text-base"
+                  onClick={() => window.open(socialLinks.linkedin, '_blank')}
                 >
                   <Linkedin className="mr-2 lg:mr-3 h-4 w-4 lg:h-5 lg:w-5" />
                   LinkedIn
@@ -762,13 +793,28 @@ features: [
           <div className="text-center">
             <p className="text-slate-600 text-sm lg:text-base">© 2024 Adepu Sanjay. All rights reserved.</p>
             <div className="flex justify-center space-x-6 mt-4 lg:mt-6">
-              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100"
+                onClick={() => window.open(socialLinks.github, '_blank')}
+              >
                 <Github className="h-4 w-4 lg:h-5 lg:w-5" />
               </Button>
-              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100"
+                onClick={() => window.open(socialLinks.linkedin, '_blank')}
+              >
                 <Linkedin className="h-4 w-4 lg:h-5 lg:w-5" />
               </Button>
-              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-slate-600 hover:text-black p-2 lg:p-3 rounded-full hover:bg-slate-100"
+                onClick={() => window.open(socialLinks.email, '_blank')}
+              >
                 <Mail className="h-4 w-4 lg:h-5 lg:w-5" />
               </Button>
             </div>

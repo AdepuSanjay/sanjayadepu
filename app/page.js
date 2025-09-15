@@ -502,30 +502,7 @@ export default function Portfolio() {
             </p>
           </motion.div>
 
-          {/* Project Filters */}
-          <motion.div
-            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            viewport={{ once: true }}
-            className="flex justify-center mb-12 lg:mb-16"
-          >
-            <div className="flex flex-wrap gap-2 p-2 bg-white rounded-lg border border-slate-200">
-              {['all', 'fullstack', 'frontend', 'backend', 'mobile'].map((filter) => (
-                <Button
-                  key={filter}
-                  variant={selectedFilter === filter ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setSelectedFilter(filter)}
-                  className={`px-3 lg:px-6 py-2 rounded-lg transition-all duration-200 text-xs lg:text-sm ${
-                    selectedFilter === filter ? 'bg-black hover:bg-slate-800 text-white' : 'hover:bg-slate-100'
-                  }`}
-                >
-                  {filter.charAt(0).toUpperCase() + filter.slice(1)}
-                </Button>
-              ))}
-            </div>
-          </motion.div>
+          
 
           {/* Projects Grid */}
           <motion.div

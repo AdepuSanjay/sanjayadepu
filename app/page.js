@@ -1,4 +1,4 @@
-ok'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -38,10 +38,10 @@ export default function Portfolio() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
-    
+
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    
+
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
@@ -55,10 +55,28 @@ export default function Portfolio() {
     { id: 'contact', label: 'Contact' }
   ]
 
-  // Projects data
+  // Projects data - Added MIS Portal project
   const projects = [
     {
       id: 1,
+      title: 'College MIS Portal (Attendance Management System)',
+      description:
+        'Developed a comprehensive college management system for TKRCET with faculty and student portals for attendance tracking.',
+      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg',
+      tags: ['React', 'Node.js', 'MongoDB', 'Express.js', 'MERN Stack'],
+      category: 'fullstack',
+      demoUrl: 'https://tkrcet.vercel.app',
+      codeUrl: '#',
+      features: [
+        '👨‍🏫 Faculty login and attendance marking',
+        '🧑‍🎓 Student attendance tracking',
+        '📱 Fully responsive design',
+        '☁️ Hosted on Vercel',
+        'End-to-end development'
+      ]
+    },
+    {
+      id: 2,
       title: 'Attendance Management Portal',
       description:
         'Built a full-stack e-commerce solution using React, Node.js, and MongoDB with payment integration and admin features.',
@@ -69,7 +87,7 @@ export default function Portfolio() {
       codeUrl: '#'
     },
     {
-      id: 2,
+      id: 3,
       title: 'Studymate AI',
       description:
         'Mobile app for task management with React Native, featuring real-time sync and offline functionality.',
@@ -80,50 +98,35 @@ export default function Portfolio() {
       demoUrl: '#',
       codeUrl: '#'
     }
-    
   ]
 
+  // Achievements data - Removed MIS Portal, kept only the award
+  const achievements = [
+    {
+      id: 1,
+      title: 'AI-Driven Drowsiness Detection System | Team Member (Grant Approved - Development Phase)',
+      description: [
+        'Part of a 3-member student team that secured a ₹15 Lakh grant from the Ministry of MSME',
+        'Project focuses on road safety through AI analysis of driver alertness',
+        'Currently in research and planning phase for development'
+      ],
+      icon: Trophy,
+      date: '2024',
+      image: null
+    },
+    {
+      id: 2,
+      title: 'Certificate of Appreciation - MIS Portal Development',
+      description: [
+        'Received recognition and certificate from TKRCET for developing the college MIS Portal',
+        'Awarded for technical excellence and contribution to college infrastructure'
+      ],
+      icon: Award,
+      date: '2023',
+      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg'
+    }
+  ];
 
-
-const achievements = [
-  {
-    id: 1,
-    title: 'AI-Driven Drowsiness Detection System | Team Member (Grant Approved - Development Phase)',
-    description: [
-      'Part of a 3-member student team that secured a ₹15 Lakh grant from the Ministry of MSME',
-      'Project focuses on road safety through AI analysis of driver alertness',
-      'Currently in research and planning phase for development'
-    ],
-    icon: Trophy,
-    date: '2024',
-    image: null
-  },
-  {
-    id: 2,
-    title: 'MIS Portal Development Award – TKRCET',
-    description: [
-      'Received recognition and certificate from TKRCET for developing the college MIS Portal (Attendance Management System)',
-      '👨‍🏫 Faculty can log in and mark attendance',
-      '🧑‍🎓 Students can check their attendance anytime',
-      '📱 Fully responsive with smooth navigation',
-      '☁️ Hosted on Vercel',
-      'Built using MERN stack (MongoDB, Express.js, React.js, Node.js)',
-      'Handled full development – frontend, backend, database, and deployment',
-      'Overcame API and UI challenges step by step',
-      'Gained experience in end-to-end planning and execution'
-    ],
-    icon: Award,
-    date: '2023',
-    image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg',
-    demoUrl: 'https://tkrcet.vercel.app'
-  }
-];
-
-
-
-
-
-  
   // Filter projects based on selected category
   const filteredProjects =
     selectedFilter === 'all'
@@ -390,12 +393,12 @@ const achievements = [
                 is to write clean, maintainable code that gets the job done.
               </p>
 
-             
+
             </motion.div>
 
             <div>
               <h3 className="text-xl lg:text-2xl font-bold text-black mb-4 lg:mb-8">What I Do</h3>
-              
+
               <div className="space-y-4">
                 <Card className="border border-slate-200 bg-white">
                   <CardHeader className="pb-3">
@@ -412,7 +415,7 @@ const achievements = [
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card className="border border-slate-200 bg-white">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-base lg:text-lg text-black">Mobile Development</CardTitle>
@@ -427,7 +430,7 @@ const achievements = [
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card className="border border-slate-200 bg-white">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-base lg:text-lg text-black">AI & Machine Learning</CardTitle>
@@ -522,13 +525,16 @@ const achievements = [
                       <CardTitle className="flex items-center justify-between text-base lg:text-lg">
                         {project.title}
                         <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="h-8 w-8 lg:h-9 lg:w-9 hover:bg-slate-100 rounded-full"
-                          >
-                            <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4" />
-                          </Button>
+                          {project.demoUrl && (
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              className="h-8 w-8 lg:h-9 lg:w-9 hover:bg-slate-100 rounded-full"
+                              onClick={() => window.open(project.demoUrl, '_blank')}
+                            >
+                              <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4" />
+                            </Button>
+                          )}
                           <Button
                             size="icon"
                             variant="ghost"
@@ -543,6 +549,15 @@ const achievements = [
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="pt-0">
+                      {project.features && (
+                        <div className="mb-3">
+                          <ul className="text-xs text-slate-600 space-y-1">
+                            {project.features.map((feature, index) => (
+                              <li key={index}>{feature}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                       <div className="flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
                           <Badge key={tag} variant="secondary" className="bg-slate-100 text-slate-700 text-xs">
@@ -559,50 +574,48 @@ const achievements = [
         </div>
       </section>
 
-     {/* Achievements Section */}
-<section id="achievements" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
-  <div className="container mx-auto px-4 max-w-6xl">
-    <motion.div
-      initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="text-center mb-12 lg:mb-20"
-    >
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
-        Achievements & Certifications
-      </h2>
-    </motion.div>
+      {/* Achievements Section */}
+      <section id="achievements" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 lg:mb-20"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 lg:mb-6">
+              Achievements & Certifications
+            </h2>
+          </motion.div>
 
-    <div className="space-y-6">
-      {achievements.map((achievement) => (
-        <Card key={achievement.id} className="border border-slate-200 bg-white">
-          <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-3 text-base lg:text-lg text-black">
-  {/* Small Image or Icon Badge */}
-  {achievement.image ? (
-    <img
-      src={achievement.image}
-      alt={achievement.title}
-      className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover border border-slate-300 shadow-sm"
-    />
-  ) : (
-    <achievement.icon className="w-5 h-5 text-slate-600" />
-  )}
-  <span className="font-semibold">{achievement.title}</span>
-</CardTitle>
-            <CardDescription className="text-xs lg:text-sm leading-relaxed">
-              {Array.isArray(achievement.description)
-                ? achievement.description.join(" • ")
-                : achievement.description}
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      ))}
-    </div>
-  </div>
-</section>
- 
+          <div className="space-y-6">
+            {achievements.map((achievement) => (
+              <Card key={achievement.id} className="border border-slate-200 bg-white">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-3 text-base lg:text-lg text-black">
+                    {achievement.image ? (
+                      <img
+                        src={achievement.image}
+                        alt={achievement.title}
+                        className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover border border-slate-300 shadow-sm"
+                      />
+                    ) : (
+                      <achievement.icon className="w-5 h-5 text-slate-600" />
+                    )}
+                    <span className="font-semibold">{achievement.title}</span>
+                  </CardTitle>
+                  <CardDescription className="text-xs lg:text-sm leading-relaxed">
+                    {Array.isArray(achievement.description)
+                      ? achievement.description.join(" • ")
+                      : achievement.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Skills Section */}
       <section id="skills" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">

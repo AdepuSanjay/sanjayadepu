@@ -57,37 +57,27 @@ export default function Portfolio() {
 
   // Projects data - Added MIS Portal project
   const projects = [
+    
     {
       id: 1,
       title: 'College MIS Portal (Attendance Management System)',
       description:
         'Developed a comprehensive college management system for TKRCET with faculty and student portals for attendance tracking.',
-      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg',
-      tags: ['React', 'Node.js', 'MongoDB', 'Express.js', 'MERN Stack'],
+      image:'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',
+      tags: ['React', 'Node.js', 'MongoDB', 'express js','cloudnary'],
       category: 'fullstack',
-      demoUrl: 'https://tkrcet.vercel.app',
-      codeUrl: '#',
-      features: [
+features: [
         '👨‍🏫 Faculty login and attendance marking',
         '🧑‍🎓 Student attendance tracking',
         '📱 Fully responsive design',
         '☁️ Hosted on Vercel',
         'End-to-end development'
-      ]
-    },
-    {
-      id: 2,
-      title: 'Attendance Management Portal',
-      description:
-        'Built a full-stack e-commerce solution using React, Node.js, and MongoDB with payment integration and admin features.',
-      image:'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',
-      tags: ['React', 'Node.js', 'MongoDB', 'express js','cloudnary'],
-      category: 'fullstack',
+      ],
       demoUrl: 'https://tkrcet.vercel.app',
       codeUrl: '#'
     },
     {
-      id: 3,
+      id: 2,
       title: 'Studymate AI',
       description:
         'Mobile app for task management with React Native, featuring real-time sync and offline functionality.',

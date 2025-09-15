@@ -24,7 +24,8 @@ import {
   ChevronRight,
   Send,
   Award,
-  Trophy
+  Trophy,
+  Loader2
 } from 'lucide-react'
 
 export default function Portfolio() {
@@ -32,6 +33,7 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedFilter, setSelectedFilter] = useState('all')
   const [isMobile, setIsMobile] = useState(false)
+  const [isSending, setIsSending] = useState(false)
 
   // Social media links
   const socialLinks = {
@@ -62,7 +64,7 @@ export default function Portfolio() {
     { id: 'contact', label: 'Contact' }
   ]
 
-  // Projects data - Added MIS Portal project
+  // Projects data - Updated Studymate project
   const projects = [
     {
       id: 1,
@@ -84,19 +86,26 @@ export default function Portfolio() {
     },
     {
       id: 2,
-      title: 'Studymate AI',
+      title: 'StudyMate AI',
       description:
-        'Mobile app for task management with React Native, featuring real-time sync and offline functionality.',
+        'AI-powered learning platform designed for students with AI tutor, exam preparation, and personalized study plans.',
       image:
         'https://res.cloudinary.com/dppiuypop/image/upload/v1757836739/uploads/d3cdddvp3uaputsicmmd.jpg',
-      tags: ['react js', 'nodejs', 'express', 'mongodb'],
-      category: 'fullstack',
-      demoUrl: '#',
+      tags: ['React Native', 'Expo CLI', 'FastAPI', 'MongoDB'],
+      category: 'mobile',
+      features: [
+        '🤖 AI-Powered tutor assistance',
+        '📚 Exam preparation support',
+        '📝 Personalized study plans',
+        '🌍 Multilingual support',
+        '📱 Mobile-first design'
+      ],
+      demoUrl: 'https://studymate-swart.vercel.app',
       codeUrl: '#'
     }
   ]
 
-  // Achievements data - Removed MIS Portal, kept only the award
+  // Achievements data
   const achievements = [
     {
       id: 1,
@@ -197,6 +206,19 @@ export default function Portfolio() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSending(true)
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsSending(false)
+      alert('Message sent successfully!')
+      e.target.reset()
+    }, 2000)
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -433,26 +455,26 @@ export default function Portfolio() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-slate-600 mb-3 leading-relaxed text-xs lg:text-sm">
-                      Creating mobile applications with React Native and Flutter
+                      Creating mobile applications with React Native and Expo CLI
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary" className="bg-purple-100 text-purple-700">React Native</Badge>
-                      <Badge variant="secondary" className="bg-blue-100 text-blue-700">Flutter</Badge>
+                      <Badge variant="secondary" className="bg-blue-100 text-blue-700">Expo CLI</Badge>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card className="border border-slate-200 bg-white">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base lg:text-lg text-black">AI & Machine Learning</CardTitle>
+                    <CardTitle className="text-base lg:text-lg text-black">Backend & API Development</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-slate-600 mb-3 leading-relaxed text-xs lg:text-sm">
-                      Working on AI solutions including the Drowsiness Detection system
+                      Building robust APIs and backend services with FastAPI and Node.js
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary" className="bg-red-100 text-red-700">AI</Badge>
-                      <Badge variant="secondary" className="bg-orange-100 text-orange-700">Machine Learning</Badge>
+                      <Badge variant="secondary" className="bg-green-100 text-green-700">FastAPI</Badge>
+                      <Badge variant="secondary" className="bg-blue-100 text-blue-700">REST APIs</Badge>
                     </div>
                   </CardContent>
                 </Card>
@@ -654,9 +676,9 @@ export default function Portfolio() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
             {[
               { icon: Code, title: 'Frontend', desc: 'React, Next.js, TypeScript' },
-              { icon: Server, title: 'Backend', desc: 'Node.js, Express, APIs' },
+              { icon: Server, title: 'Backend', desc: 'Node.js, FastAPI, Express' },
               { icon: Database, title: 'Database', desc: 'MongoDB, MySQL, Redis' },
-              { icon: Smartphone, title: 'Mobile', desc: 'React Native, Flutter' }
+              { icon: Smartphone, title: 'Mobile', desc: 'React Native, Expo CLI' }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -681,71 +703,76 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-<section id="contact" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
-  <div className="container mx-auto px-4 max-w-3xl">
-    <motion.div
-      initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="text-center mb-12"
-    >
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4">
-        Get In Touch
-      </h2>
-      <p className="text-sm sm:text-base lg:text-lg text-slate-600">
-        Fill out the form below and I’ll get back to you soon.
-      </p>
-    </motion.div>
+      <section id="contact" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <motion.div
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4">
+              Get In Touch
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600">
+              Fill out the form below and I'll get back to you soon.
+            </p>
+          </motion.div>
 
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault()
-        const formData = {
-          name: e.target.name.value,
-          email: e.target.email.value,
-          message: e.target.message.value,
-        }
+          <form onSubmit={handleSubmit} className="space-y-6 bg-white shadow p-6 rounded-2xl border border-slate-200">
+            <div>
+              <Label htmlFor="name">Name</Label>
+              <Input 
+                id="name" 
+                name="name" 
+                type="text" 
+                placeholder="Enter your name" 
+                required 
+              />
+            </div>
 
-        const res = await fetch("https://sanjayadepu-ax58.vercel.app/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        })
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input 
+                id="email" 
+                name="email" 
+                type="email" 
+                placeholder="Enter your email address" 
+                required 
+              />
+            </div>
 
-        if (res.ok) {
-          alert("Message sent successfully ✅")
-          e.target.reset()
-        } else {
-          alert("Failed to send message ❌")
-        }
-      }}
-      className="space-y-6 bg-white shadow p-6 rounded-2xl border border-slate-200"
-    >
-      <div>
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" type="text" required />
-      </div>
+            <div>
+              <Label htmlFor="message">Message</Label>
+              <Textarea 
+                id="message" 
+                name="message" 
+                rows="5" 
+                placeholder="Type your message here..." 
+                required 
+              />
+            </div>
 
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" required />
-      </div>
-
-      <div>
-        <Label htmlFor="message">Message</Label>
-        <Textarea id="message" name="message" rows="5" required />
-      </div>
-
-      <Button type="submit" className="bg-black text-white hover:bg-slate-800 w-full">
-        Send Message <Send className="ml-2 h-4 w-4" />
-      </Button>
-    </form>
-  </div>
-</section>
-
-
-
+            <Button 
+              type="submit" 
+              className="bg-black text-white hover:bg-slate-800 w-full"
+              disabled={isSending}
+            >
+              {isSending ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                <>
+                  Send Message <Send className="ml-2 h-4 w-4" />
+                </>
+              )}
+            </Button>
+          </form>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="py-8 lg:py-12 bg-white text-slate-900 border-t border-slate-200">

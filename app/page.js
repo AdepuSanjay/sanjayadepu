@@ -98,8 +98,7 @@ export default function Portfolio() {
         '📚 Exam preparation support',
         '📝 Personalized study plans',
         '🌍 Multilingual support',
-        '📱 Mobile-first design and
-             Fully responsive design '
+        '📱 Mobile-first design and Fully responsive design'
       ],
       demoUrl: 'https://studymate-swart.vercel.app',
       codeUrl: '#'

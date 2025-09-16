@@ -91,14 +91,15 @@ export default function Portfolio() {
         'AI-powered learning platform designed for students with AI tutor, exam preparation, and personalized study plans.',
       image:
         'https://res.cloudinary.com/dppiuypop/image/upload/v1757836739/uploads/d3cdddvp3uaputsicmmd.jpg',
-      tags: ['React Native', 'Expo CLI', 'FastAPI', 'MongoDB'],
+      tags: ['Reactjs', 'nodejs', 'express', 'MongoDB'],
       category: 'mobile',
       features: [
         '🤖 AI-Powered tutor assistance',
         '📚 Exam preparation support',
         '📝 Personalized study plans',
         '🌍 Multilingual support',
-        '📱 Mobile-first design'
+        '📱 Mobile-first design and
+             Fully responsive design '
       ],
       demoUrl: 'https://studymate-swart.vercel.app',
       codeUrl: '#'

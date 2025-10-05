@@ -74,8 +74,8 @@ export default function Portfolio() {
       title: 'College MIS Portal (Attendance Management System)',  
       description:  
         'A comprehensive college management system built for TKRCET with faculty and student portals for attendance tracking.',  
-      video: 'https://res.cloudinary.com/dppiuypop/video/upload/v1757834562/your-college-mis-video.mp4', // Replace with your actual video URL
-      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',  
+      video: 'https://res.cloudinary.com/dh3d4pwm4/video/upload/v1759212991/tkr_mecmco.mp4', // Replace with your actual video URL
+      
       tags: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Cloudinary'],  
       category: 'fullstack',  
       features: [  

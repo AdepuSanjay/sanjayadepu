@@ -1,6 +1,5 @@
-
 'use client'  
-  
+
 import { useState, useEffect } from 'react'  
 import { motion, AnimatePresence } from 'framer-motion'  
 import { Button } from '@/components/ui/button'  
@@ -26,35 +25,38 @@ import {
   Send,  
   Award,  
   Trophy,  
-  Loader2  
+  Loader2,
+  Play,
+  Pause
 } from 'lucide-react'  
-  
+
 export default function Portfolio() {  
   const [activeSection, setActiveSection] = useState('home')  
   const [isMenuOpen, setIsMenuOpen] = useState(false)  
   const [selectedFilter, setSelectedFilter] = useState('all')  
   const [isMobile, setIsMobile] = useState(false)  
   const [isSending, setIsSending] = useState(false)  
-  
+  const [playingVideos, setPlayingVideos] = useState({})
+
   // Social media links  
   const socialLinks = {  
     github: 'https://github.com/AdepuSanjay',  
     linkedin: 'https://www.linkedin.com/in/adepu-sanjay-3746662a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',  
     email: 'mailto:adepusanjay812@gmail.com'  
   }  
-  
+
   // Check if device is mobile  
   useEffect(() => {  
     const checkMobile = () => {  
       setIsMobile(window.innerWidth < 768)  
     }  
-  
+
     checkMobile()  
     window.addEventListener('resize', checkMobile)  
-  
+
     return () => window.removeEventListener('resize', checkMobile)  
   }, [])  
-  
+
   // Navigation items  
   const navItems = [  
     { id: 'home', label: 'Home' },  
@@ -64,16 +66,15 @@ export default function Portfolio() {
     { id: 'skills', label: 'Skills' },  
     { id: 'contact', label: 'Contact' }  
   ]  
-  
-  
-  
-// Projects data - Updated with Vektor Insight  
+
+  // Projects data - Updated with video support
   const projects = [  
     {  
       id: 1,  
       title: 'College MIS Portal (Attendance Management System)',  
       description:  
         'A comprehensive college management system built for TKRCET with faculty and student portals for attendance tracking.',  
+      video: 'https://res.cloudinary.com/dppiuypop/video/upload/v1757834562/your-college-mis-video.mp4', // Replace with your actual video URL
       image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',  
       tags: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Cloudinary'],  
       category: 'fullstack',  
@@ -92,7 +93,8 @@ export default function Portfolio() {
       title: 'Vektor Insight – Code Debugger & Analyzer',  
       description:  
         'A professional multi-language debugging and code analysis platform. It supports C, C++, Python, Java, JavaScript, React.js, Node.js and more, with real-time insights and visualizations.',  
-      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757839000/uploads/vektor_insight_preview.jpg', // replace with your screenshot  
+      video: 'https://res.cloudinary.com/dppiuypop/video/upload/v1757839000/your-vektor-video.mp4', // Replace with your actual video URL
+      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757839000/uploads/vektor_insight_preview.jpg',  
       tags: ['Next.js', 'TypeScript', 'Framer Motion', 'Vercel'],  
       category: 'fullstack',  
       features: [  
@@ -106,14 +108,7 @@ export default function Portfolio() {
       codeUrl: '#'  
     }  
   ]  
-  
-  
-  
-  
-  
-  
-  
-  
+
   // Achievements data  
   const achievements = [  
     {  
@@ -140,20 +135,20 @@ export default function Portfolio() {
       image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757481539/uploads/gxs0kkwbl57jl4ocbk54.jpg'  
     }  
   ];  
-  
+
   // Filter projects based on selected category  
   const filteredProjects =  
     selectedFilter === 'all'  
       ? projects  
       : projects.filter((project) => project.category === selectedFilter)  
-  
+
   // Animation variants - simplified for mobile  
   const fadeInUp = {  
     initial: isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 },  
     animate: { opacity: 1, y: 0 },  
     transition: { duration: 0.6 }  
   }  
-  
+
   const staggerContainer = {  
     animate: {  
       transition: {  
@@ -161,31 +156,31 @@ export default function Portfolio() {
       }  
     }  
   }  
-  
+
   const slideInRight = {  
     initial: isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 },  
     animate: { opacity: 1, x: 0 },  
     transition: { duration: 0.6 }  
   }  
-  
+
   const fadeIn = {  
     initial: isMobile ? { opacity: 1 } : { opacity: 0 },  
     animate: { opacity: 1 },  
     transition: { duration: 0.6 }  
   }  
-  
+
   // Scroll to section  
   const scrollToSection = (sectionId) => {  
     setActiveSection(sectionId)  
     setIsMenuOpen(false)  
-  
+
     setTimeout(() => {  
       const element = document.getElementById(sectionId)  
       if (element) {  
         const headerHeight = 64  
         const elementPosition = element.getBoundingClientRect().top  
         const offsetPosition = elementPosition + window.pageYOffset - headerHeight  
-  
+
         window.scrollTo({  
           top: offsetPosition,  
           behavior: 'smooth'  
@@ -193,13 +188,13 @@ export default function Portfolio() {
       }  
     }, 100)  
   }  
-  
+
   // Handle scroll for active section  
   useEffect(() => {  
     const handleScroll = () => {  
       const sections = ['home', 'about', 'projects', 'achievements', 'skills', 'contact']  
       const scrollPosition = window.scrollY + 100  
-  
+
       for (const section of sections) {  
         const element = document.getElementById(section)  
         if (element) {  
@@ -211,16 +206,16 @@ export default function Portfolio() {
         }  
       }  
     }  
-  
+
     window.addEventListener('scroll', handleScroll)  
     return () => window.removeEventListener('scroll', handleScroll)  
   }, [])  
-  
+
   // Handle form submission  
   const handleSubmit = async (e) => {  
     e.preventDefault()  
     setIsSending(true)  
-  
+
     // Simulate API call  
     setTimeout(() => {  
       setIsSending(false)  
@@ -228,7 +223,26 @@ export default function Portfolio() {
       e.target.reset()  
     }, 2000)  
   }  
-  
+
+  // Video control functions
+  const toggleVideoPlayback = (projectId, videoElement) => {
+    if (videoElement.paused) {
+      videoElement.play()
+      setPlayingVideos(prev => ({ ...prev, [projectId]: true }))
+    } else {
+      videoElement.pause()
+      setPlayingVideos(prev => ({ ...prev, [projectId]: false }))
+    }
+  }
+
+  const handleVideoPlay = (projectId) => {
+    setPlayingVideos(prev => ({ ...prev, [projectId]: true }))
+  }
+
+  const handleVideoPause = (projectId) => {
+    setPlayingVideos(prev => ({ ...prev, [projectId]: false }))
+  }
+
   return (  
     <div className="min-h-screen bg-white">  
       {/* Navigation */}  
@@ -242,7 +256,7 @@ export default function Portfolio() {
             >  
               Adepu Sanjay  
             </motion.div>  
-  
+
             {/* Desktop Navigation */}  
             <div className="hidden md:flex items-center space-x-1">  
               {navItems.map((item) => (  
@@ -259,7 +273,7 @@ export default function Portfolio() {
                 </button>  
               ))}  
             </div>  
-  
+
             {/* Mobile Menu Button */}  
             <button  
               onClick={() => setIsMenuOpen((v) => !v)}  
@@ -270,7 +284,7 @@ export default function Portfolio() {
               {isMenuOpen ? <X size={22} /> : <Menu size={22} />}  
             </button>  
           </div>  
-  
+
           {/* Mobile Navigation */}  
           <AnimatePresence>  
             {isMenuOpen && (  
@@ -298,7 +312,7 @@ export default function Portfolio() {
           </AnimatePresence>  
         </div>  
       </nav>  
-  
+
       {/* Hero Section */}  
       <section id="home" className="relative z-0 pt-16 min-h-screen flex items-center">  
         <div className="container mx-auto px-4 max-w-6xl">  
@@ -321,7 +335,7 @@ export default function Portfolio() {
                   Available for opportunities  
                 </Badge>  
               </motion.div>  
-  
+
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black leading-tight">  
                 Hi, I'm{' '}  
                 <span className="text-black relative">  
@@ -329,16 +343,16 @@ export default function Portfolio() {
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-500 rounded-full"></div>  
                 </span>  
               </h1>  
-  
+
               <p className="text-lg sm:text-xl lg:text-2xl text-slate-700 font-medium">  
                 Full Stack Developer  
               </p>  
-  
+
               <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed">  
                 I build web and mobile applications using modern technologies like React, Node.js,   
                 and React Native. Focused on creating practical solutions that work well.  
               </p>  
-  
+
               <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-2 lg:pt-4 justify-center">  
                 <Button  
                   size="lg"  
@@ -357,7 +371,7 @@ export default function Portfolio() {
                   Get In Touch  
                 </Button>  
               </div>  
-  
+
               <div className="flex justify-center space-x-4 pt-2 lg:pt-4">  
                 <Button   
                   variant="ghost"   
@@ -388,7 +402,7 @@ export default function Portfolio() {
           </div>  
         </div>  
       </section>  
-  
+
       {/* About Section */}  
       <section id="about" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">  
         <div className="container mx-auto px-4 max-w-6xl">  
@@ -406,7 +420,7 @@ export default function Portfolio() {
               Full-stack developer with experience building web and mobile applications  
             </p>  
           </motion.div>  
-  
+
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">  
             <motion.div  
               variants={fadeIn}  
@@ -424,23 +438,21 @@ export default function Portfolio() {
                   />  
                 </div>  
               </div>  
-  
+
               <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed">  
                 I'm a Full Stack Developer with experience in modern web technologies. I work with   
                 MERN stack, Next.js, and React Native to build applications that solve real problems.  
               </p>  
-  
+
               <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed">  
                 I enjoy learning new technologies and working on practical solutions. My approach   
                 is to write clean, maintainable code that gets the job done.  
               </p>  
-  
-  
             </motion.div>  
-  
+
             <div>  
               <h3 className="text-xl lg:text-2xl font-bold text-black mb-4 lg:mb-8">What I Do</h3>  
-  
+
               <div className="space-y-4">  
                 <Card className="border border-slate-200 bg-white">  
                   <CardHeader className="pb-3">  
@@ -457,7 +469,7 @@ export default function Portfolio() {
                     </div>  
                   </CardContent>  
                 </Card>  
-  
+
                 <Card className="border border-slate-200 bg-white">  
                   <CardHeader className="pb-3">  
                     <CardTitle className="text-base lg:text-lg text-black">Mobile Development</CardTitle>  
@@ -472,7 +484,7 @@ export default function Portfolio() {
                     </div>  
                   </CardContent>  
                 </Card>  
-  
+
                 <Card className="border border-slate-200 bg-white">  
                   <CardHeader className="pb-3">  
                     <CardTitle className="text-base lg:text-lg text-black">Backend & API Development</CardTitle>  
@@ -492,7 +504,7 @@ export default function Portfolio() {
           </div>  
         </div>  
       </section>  
-  
+
       {/* Projects Section */}  
       <section id="projects" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">  
         <div className="container mx-auto px-4 max-w-6xl">  
@@ -510,9 +522,7 @@ export default function Portfolio() {
               Some of the work I've done recently  
             </p>  
           </motion.div>  
-  
-  
-  
+
           {/* Projects Grid */}  
           <motion.div  
             variants={staggerContainer}  
@@ -534,11 +544,46 @@ export default function Portfolio() {
                 >  
                   <Card className="group border border-slate-200 bg-white">  
                     <div className="aspect-video overflow-hidden relative">  
-                      <img  
-                        src={project.image}  
-                        alt={project.title}  
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"  
-                      />  
+                      {project.video ? (  
+                        <div className="relative w-full h-full group/video">  
+                          <video  
+                            src={project.video}  
+                            className="w-full h-full object-cover"  
+                            muted  
+                            loop  
+                            playsInline  
+                            poster={project.image}  
+                            onPlay={() => handleVideoPlay(project.id)}  
+                            onPause={() => handleVideoPause(project.id)}  
+                          />  
+                          {/* Video controls overlay */}  
+                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover/video:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 group-hover/video:opacity-100">  
+                            <Button  
+                              variant="ghost"  
+                              size="icon"  
+                              className="bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full w-12 h-12 shadow-lg"  
+                              onClick={(e) => {  
+                                e.preventDefault();  
+                                e.stopPropagation();  
+                                const video = e.target.closest('.relative').querySelector('video');  
+                                toggleVideoPlayback(project.id, video);  
+                              }}  
+                            >  
+                              {playingVideos[project.id] ? (  
+                                <Pause className="h-6 w-6" />  
+                              ) : (  
+                                <Play className="h-6 w-6" />  
+                              )}  
+                            </Button>  
+                          </div>  
+                        </div>  
+                      ) : (  
+                        <img  
+                          src={project.image}  
+                          alt={project.title}  
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"  
+                        />  
+                      )}  
                     </div>  
                     <CardHeader className="pb-2 lg:pb-4">  
                       <CardTitle className="flex items-center justify-between text-base lg:text-lg">  
@@ -592,7 +637,7 @@ export default function Portfolio() {
           </motion.div>  
         </div>  
       </section>  
-  
+
       {/* Achievements Section */}  
       <section id="achievements" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">  
         <div className="container mx-auto px-4 max-w-6xl">  
@@ -607,7 +652,7 @@ export default function Portfolio() {
               Achievements & Certifications  
             </h2>  
           </motion.div>  
-  
+
           <div className="space-y-6">  
             {achievements.map((achievement) => (  
               <Card key={achievement.id} className="border border-slate-200 bg-white">  
@@ -640,7 +685,7 @@ export default function Portfolio() {
           </div>  
         </div>  
       </section>  
-  
+
       {/* Skills Section */}  
       <section id="skills" className="relative z-0 py-16 lg:py-24 bg-white border-t border-slate-200">  
         <div className="container mx-auto px-4 max-w-6xl">  
@@ -658,7 +703,7 @@ export default function Portfolio() {
               Technologies I use for building applications  
             </p>  
           </motion.div>  
-  
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">  
             {[  
               { icon: Code, title: 'Frontend', desc: 'React, Next.js, TypeScript' },  
@@ -687,7 +732,7 @@ export default function Portfolio() {
           </div>  
         </div>  
       </section>  
-  
+
       {/* Contact Section */}  
       <section id="contact" className="relative z-0 py-16 lg:py-24 bg-slate-50 border-t border-slate-200">  
         <div className="container mx-auto px-4 max-w-3xl">  
@@ -705,7 +750,7 @@ export default function Portfolio() {
               Fill out the form below and I'll get back to you soon.  
             </p>  
           </motion.div>  
-  
+
           <form onSubmit={handleSubmit} className="space-y-6 bg-white shadow p-6 rounded-2xl border border-slate-200">  
             <div>  
               <Label htmlFor="name">Name</Label>  
@@ -717,7 +762,7 @@ export default function Portfolio() {
                 required   
               />  
             </div>  
-  
+
             <div>  
               <Label htmlFor="email">Email</Label>  
               <Input   
@@ -728,7 +773,7 @@ export default function Portfolio() {
                 required   
               />  
             </div>  
-  
+
             <div>  
               <Label htmlFor="message">Message</Label>  
               <Textarea   
@@ -739,7 +784,7 @@ export default function Portfolio() {
                 required   
               />  
             </div>  
-  
+
             <Button   
               type="submit"   
               className="bg-black text-white hover:bg-slate-800 w-full"  
@@ -759,7 +804,7 @@ export default function Portfolio() {
           </form>  
         </div>  
       </section>  
-  
+
       {/* Footer */}  
       <footer className="py-8 lg:py-12 bg-white text-slate-900 border-t border-slate-200">  
         <div className="container mx-auto px-4 max-w-6xl">  
@@ -796,4 +841,4 @@ export default function Portfolio() {
       </footer>  
     </div>  
   )  
-}  
+}

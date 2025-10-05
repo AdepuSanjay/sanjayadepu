@@ -64,46 +64,54 @@ export default function Portfolio() {
     { id: 'contact', label: 'Contact' }
   ]
 
-  // Projects data - Updated Studymate project
+  
+
+// Projects data - Updated with Vektor Insight
   const projects = [
     {
       id: 1,
       title: 'College MIS Portal (Attendance Management System)',
       description:
-        'Developed a comprehensive college management system for TKRCET with faculty and student portals for attendance tracking.',
-      image:'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',
-      tags: ['React', 'Node.js', 'MongoDB', 'express js','cloudnary'],
+        'A comprehensive college management system built for TKRCET with faculty and student portals for attendance tracking.',
+      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',
+      tags: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Cloudinary'],
       category: 'fullstack',
       features: [
         '👨‍🏫 Faculty login and attendance marking',
         '🧑‍🎓 Student attendance tracking',
         '📱 Fully responsive design',
-        '☁️ Hosted on Vercel',
-        'End-to-end development'
+        '☁️ Deployed on Vercel',
+        'Complete end-to-end development'
       ],
       demoUrl: 'https://tkrcet.vercel.app',
       codeUrl: '#'
     },
     {
       id: 2,
-      title: 'StudyMate AI',
+      title: 'Vektor Insight – Code Debugger & Analyzer',
       description:
-        'AI-powered learning platform designed for students with AI tutor, exam preparation, and personalized study plans.',
-      image:
-        'https://res.cloudinary.com/dppiuypop/image/upload/v1757836739/uploads/d3cdddvp3uaputsicmmd.jpg',
-      tags: ['Reactjs', 'nodejs', 'express', 'MongoDB'],
-      category: 'mobile',
+        'A professional multi-language debugging and code analysis platform. It supports C, C++, Python, Java, JavaScript, React.js, Node.js and more, with real-time insights and visualizations.',
+      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757839000/uploads/vektor_insight_preview.jpg', // replace with your screenshot
+      tags: ['Next.js', 'TypeScript', 'Framer Motion', 'Vercel'],
+      category: 'fullstack',
       features: [
-        '🤖 AI-Powered tutor assistance',
-        '📚 Exam preparation support',
-        '📝 Personalized study plans',
-        '🌍 Multilingual support',
-        '📱 Mobile-first design and Fully responsive design'
+        '🔍 Real-time code debugging and error tracing',
+        '📊 Static code analysis for bugs, vulnerabilities, and performance issues',
+        '💻 Supports multiple languages: C, C++, Python, Java, JavaScript, React.js, Node.js, etc.',
+        '📂 Visualizations of dependencies and code flow',
+        '☁️ Hosted on Vercel for seamless global access'
       ],
-      demoUrl: 'https://studymate-swart.vercel.app',
+      demoUrl: 'https://vektor-insight.vercel.app/',
       codeUrl: '#'
     }
   ]
+
+
+
+
+
+
+
 
   // Achievements data
   const achievements = [

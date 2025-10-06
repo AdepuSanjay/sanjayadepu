@@ -1,6 +1,6 @@
 'use client'  
 
-import { useState, useEffect } from 'react'  
+import { useState, useEffect, useRef } from 'react'  
 import { motion, AnimatePresence } from 'framer-motion'  
 import { Button } from '@/components/ui/button'  
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'  
@@ -37,6 +37,7 @@ export default function Portfolio() {
   const [isMobile, setIsMobile] = useState(false)  
   const [isSending, setIsSending] = useState(false)  
   const [playingVideos, setPlayingVideos] = useState({})
+  const videoRefs = useRef({})
 
   // Social media links  
   const socialLinks = {  
@@ -74,8 +75,8 @@ export default function Portfolio() {
       title: 'College MIS Portal (Attendance Management System)',  
       description:  
         'A comprehensive college management system built for TKRCET with faculty and student portals for attendance tracking.',  
-      video: 'https://res.cloudinary.com/dh3d4pwm4/video/upload/v1759212991/tkr_mecmco.mp4', // Replace with your actual video URL
-      
+      video: 'https://res.cloudinary.com/dh3d4pwm4/video/upload/v1759212991/tkr_mecmco.mp4',
+      image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg',  
       tags: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Cloudinary'],  
       category: 'fullstack',  
       features: [  
@@ -93,7 +94,7 @@ export default function Portfolio() {
       title: 'Vektor Insight – Code Debugger & Analyzer',  
       description:  
         'A professional multi-language debugging and code analysis platform. It supports C, C++, Python, Java, JavaScript, React.js, Node.js and more, with real-time insights and visualizations.',  
-      video: 'https://res.cloudinary.com/dppiuypop/video/upload/v1757839000/your-vektor-video.mp4', // Replace with your actual video URL
+      video: 'https://res.cloudinary.com/dppiuypop/video/upload/v1757839000/your-vektor-video.mp4',
       image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757839000/uploads/vektor_insight_preview.jpg',  
       tags: ['Next.js', 'TypeScript', 'Framer Motion', 'Vercel'],  
       category: 'fullstack',  
@@ -241,6 +242,58 @@ export default function Portfolio() {
 
   const handleVideoPause = (projectId) => {
     setPlayingVideos(prev => ({ ...prev, [projectId]: false }))
+  }
+
+  // Auto-play videos when they come into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const video = entry.target;
+            const projectId = video.dataset.projectId;
+            if (video.paused) {
+              video.play().catch(() => {
+                // Autoplay failed, but that's okay
+              });
+              setPlayingVideos(prev => ({ ...prev, [projectId]: true }));
+            }
+          } else {
+            const video = entry.target;
+            const projectId = video.dataset.projectId;
+            if (!video.paused) {
+              video.pause();
+              setPlayingVideos(prev => ({ ...prev, [projectId]: false }));
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Play when 50% of video is visible
+      }
+    );
+
+    // Observe all video elements
+    Object.values(videoRefs.current).forEach((video) => {
+      if (video) {
+        observer.observe(video);
+      }
+    });
+
+    return () => {
+      Object.values(videoRefs.current).forEach((video) => {
+        if (video) {
+          observer.unobserve(video);
+        }
+      });
+    };
+  }, [filteredProjects]);
+
+  // Set video refs
+  const setVideoRef = (projectId, element) => {
+    if (element) {
+      videoRefs.current[projectId] = element;
+    }
   }
 
   return (  
@@ -547,11 +600,14 @@ export default function Portfolio() {
                       {project.video ? (  
                         <div className="relative w-full h-full group/video">  
                           <video  
+                            ref={(el) => setVideoRef(project.id, el)}
+                            data-project-id={project.id}
                             src={project.video}  
                             className="w-full h-full object-cover"  
                             muted  
                             loop  
                             playsInline  
+                            autoPlay
                             poster={project.image}  
                             onPlay={() => handleVideoPlay(project.id)}  
                             onPause={() => handleVideoPause(project.id)}  

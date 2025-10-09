@@ -94,7 +94,7 @@ export default function Portfolio() {
       title: 'Vektor Insight – Code Debugger & Analyzer',  
       description:  
         'A professional multi-language debugging and code analysis platform. It supports C, C++, Python, Java, JavaScript, React.js, Node.js and more, with real-time insights and visualizations.',  
-      video: 'https://res.cloudinary.com/dppiuypop/video/upload/v1757839000/your-vektor-video.mp4',
+      video:'https://res.cloudinary.com/dg6eufdce/video/upload/v1760033265/VID_20251009_233543_jt2zkl.mp4',
       image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757839000/uploads/vektor_insight_preview.jpg',  
       tags: ['Next.js', 'TypeScript', 'Framer Motion', 'Vercel'],  
       category: 'fullstack',  

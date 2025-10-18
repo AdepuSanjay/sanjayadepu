@@ -1,30 +1,63 @@
-.gradient-text {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 6s ease infinite;
-}
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #f9fafb;
+    --foreground: #111827;
+    --primary: #1e293b;
+    --secondary: #475569;
+    --border: #e5e7eb;
+    --card: #ffffff;
+    --hover: #f3f4f6;
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
 }
 
-.section-bg::before {
+/* Premium Buttons */
+.btn-premium {
+  @apply bg-[var(--primary)] text-white rounded-lg px-5 py-2.5 font-medium shadow-sm transition-all;
+}
+.btn-premium:hover {
+  @apply bg-[#0f172a] shadow-md -translate-y-0.5;
+}
+.btn-premium-outline {
+  @apply border border-[var(--border)] text-[var(--primary)] rounded-lg px-5 py-2.5 font-medium transition-all;
+}
+.btn-premium-outline:hover {
+  @apply bg-[var(--hover)] -translate-y-0.5;
+}
+
+/* Inputs */
+.form-input-premium {
+  @apply border border-[var(--border)] rounded-lg px-3 py-2.5 w-full bg-white text-[var(--foreground)] placeholder:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] outline-none;
+}
+
+/* Card */
+.premium-card {
+  @apply bg-[var(--card)] border border-[var(--border)] shadow-sm hover:shadow-md transition-all;
+}
+
+/* Nav */
+.nav-item {
+  @apply relative text-[var(--secondary)] transition-all;
+}
+.nav-item::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.05), transparent 70%);
-  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--primary);
+  transition: width 0.3s ease;
 }
-
-.premium-card {
-  background: linear-gradient(145deg, #ffffff, #f8fafc);
-  transition: all 0.3s ease;
-}
-.dark .premium-card {
-  background: linear-gradient(145deg, #0f172a, #1e293b);
-}
-.premium-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+.nav-item:hover::after,
+.nav-item.text-primary::after {
+  width: 100%;
 }

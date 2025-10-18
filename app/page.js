@@ -2,54 +2,42 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
+import { Github, Linkedin, Mail, Menu, X, Send, Loader2, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import {
-  Menu, X, Github, Linkedin, Mail, ChevronRight, Send, Loader2, Sun, Moon,
-} from 'lucide-react'
-import { useTheme } from 'next-themes'
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSending, setIsSending] = useState(false)
-  const [isSent, setIsSent] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
 
-  // Socials
   const socialLinks = {
     github: 'https://github.com/AdepuSanjay',
     linkedin: 'https://www.linkedin.com/in/adepu-sanjay-3746662a9/',
     email: 'mailto:adepusanjay812@gmail.com',
   }
 
-  // Navigation items
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'contact', label: 'Contact' },
-  ]
+  // Scroll progress bar
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  })
 
-  // Handle scroll for active section highlight
+  // Scroll spy for active nav
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'skills', 'contact']
-      const scrollPos = window.scrollY + 100
-      for (const sec of sections) {
-        const el = document.getElementById(sec)
+      const sections = ['home', 'about', 'projects', 'contact']
+      const scrollPos = window.scrollY + 150
+      for (const section of sections) {
+        const el = document.getElementById(section)
         if (el) {
           const { offsetTop, offsetHeight } = el
           if (scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight) {
-            setActiveSection(sec)
-            break
+            setActiveSection(section)
           }
         }
       }
@@ -58,76 +46,59 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Scroll to section
-  const scrollToSection = (id: string) => {
-    setActiveSection(id)
-    setIsMenuOpen(false)
-    const el = document.getElementById(id)
-    if (el) {
-      window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' })
-    }
-  }
-
-  // Contact form simulation
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setIsSending(true)
     setTimeout(() => {
       setIsSending(false)
-      setIsSent(true)
-      setTimeout(() => setIsSent(false), 3000)
+      alert('Message sent successfully!')
     }, 2000)
   }
 
   return (
-    <main className="relative bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Scroll progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 origin-left z-[9999]"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-primary origin-left z-[9999]"
         style={{ scaleX }}
       />
 
       {/* Navbar */}
-      <motion.nav
-        initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7 }}
-        className="fixed top-0 w-full bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800 z-[999]"
-      >
-        <div className="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
-          <h1 className="text-xl font-bold tracking-tight">Adepu Sanjay</h1>
+      <nav className="fixed top-0 w-full backdrop-blur-md bg-white/70 border-b border-border z-[999]">
+        <div className="max-w-6xl mx-auto flex items-center justify-between h-16 px-6">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="font-bold text-lg tracking-tight"
+          >
+            Adepu Sanjay
+          </motion.div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-2">
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-1">
+            {['home', 'about', 'projects', 'contact'].map((item) => (
               <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`nav-item text-sm font-medium px-3 py-2 transition ${
-                  activeSection === item.id
-                    ? 'text-blue-600'
-                    : 'hover:text-blue-500'
+                key={item}
+                onClick={() =>
+                  document.getElementById(item)?.scrollIntoView({ behavior: 'smooth' })
+                }
+                className={`nav-item px-4 py-2 text-sm font-medium transition-all ${
+                  activeSection === item
+                    ? 'text-primary font-semibold'
+                    : 'text-secondary hover:text-foreground'
                 }`}
               >
-                {item.label}
+                {item.charAt(0).toUpperCase() + item.slice(1)}
               </button>
             ))}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="ml-4"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </Button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Nav */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="md:hidden text-foreground p-2"
+            onClick={() => setIsMenuOpen((p) => !p)}
           >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
@@ -138,237 +109,182 @@ export default function Portfolio() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden flex flex-col px-4 pb-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md"
+              className="md:hidden border-t border-border bg-white/90 backdrop-blur-md"
             >
-              {navItems.map((item) => (
+              {['home', 'about', 'projects', 'contact'].map((item) => (
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`py-2 text-left ${
-                    activeSection === item.id
-                      ? 'text-blue-600 font-medium'
-                      : 'hover:text-blue-500'
+                  key={item}
+                  onClick={() => {
+                    document.getElementById(item)?.scrollIntoView({ behavior: 'smooth' })
+                    setIsMenuOpen(false)
+                  }}
+                  className={`block w-full text-left px-6 py-3 text-sm font-medium ${
+                    activeSection === item
+                      ? 'text-primary bg-hover'
+                      : 'text-secondary hover:text-foreground'
                   }`}
                 >
-                  {item.label}
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
                 </button>
               ))}
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.nav>
+      </nav>
 
       {/* Hero Section */}
-      <section
-        id="home"
-        className="min-h-screen flex items-center justify-center relative text-center"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+      <section id="home" className="pt-24 pb-32 flex flex-col items-center text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="max-w-2xl px-4"
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold mb-4"
         >
-          <span className="badge-premium text-sm mb-4 block">
-            Available for opportunities
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 gradient-text">
-            Hi, I'm Adepu Sanjay
-          </h1>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400">
-            A Full Stack Developer building practical and efficient applications
-            using React, Node.js, and modern technologies.
-          </p>
-          <div className="mt-8 flex justify-center gap-3">
-            <Button
-              className="btn-premium"
-              onClick={() => scrollToSection('projects')}
-            >
-              View My Work <ChevronRight size={16} className="ml-2" />
-            </Button>
-            <Button
-              variant="outline"
-              className="btn-premium-outline"
-              onClick={() => scrollToSection('contact')}
-            >
-              Get in Touch
-            </Button>
-          </div>
-        </motion.div>
+          Hello, I'm <span className="text-primary">Adepu Sanjay</span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="text-lg text-secondary max-w-xl"
+        >
+          Full Stack Developer specializing in modern web and mobile applications using
+          React, Node.js, and Next.js.
+        </motion.p>
+        <div className="flex gap-3 mt-8">
+          <Button
+            className="btn-premium"
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            View Work <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            className="btn-premium-outline"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Contact
+          </Button>
+        </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-24 section-bg">
+      {/* About */}
+      <section id="about" className="py-24 border-t border-border">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="max-w-5xl mx-auto px-4 text-center"
+          className="max-w-5xl mx-auto px-6 text-center"
         >
-          <h2 className="heading-2 mb-6">About Me</h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-            I'm a developer focused on building user-friendly web and mobile
-            applications. My philosophy: “Write clean code that works.” I love
-            combining logic, design, and technology to solve real-world
-            problems.
+          <h2 className="text-3xl font-semibold mb-4">About Me</h2>
+          <p className="text-secondary max-w-3xl mx-auto">
+            I'm a passionate Full Stack Developer who believes in building clean,
+            scalable, and meaningful digital experiences. I enjoy transforming ideas into
+            real-world applications with clean architecture and aesthetic design.
           </p>
         </motion.div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-24 bg-slate-50 dark:bg-slate-900 section-bg">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="max-w-6xl mx-auto px-4 text-center"
-        >
-          <h2 className="heading-2 mb-12">Projects</h2>
+      {/* Projects */}
+      <section id="projects" className="py-24 border-t border-border bg-[#f5f6f7]">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-semibold mb-12 text-center">Projects</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {[{
-              title: 'College MIS Portal',
-              desc: 'A complete college management platform with faculty and student portals.',
-              tech: ['React', 'Node.js', 'MongoDB'],
-              link: 'https://tkrcet.vercel.app',
-              image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757834562/uploads/keoo0vprrm4tf48yptcf.jpg'
-            },
-            {
-              title: 'Vektor Insight – Code Analyzer',
-              desc: 'A multi-language code debugging and visualization platform.',
-              tech: ['React', 'Node.js', 'Express'],
-              link: 'https://vektor-insight.vercel.app/',
-              image: 'https://res.cloudinary.com/dppiuypop/image/upload/v1757839000/uploads/vektor_insight_preview.jpg'
-            }].map((p, i) => (
+            {[1, 2].map((i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -5 }}
-                className="premium-card rounded-xl overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="premium-card rounded-2xl border border-border bg-card p-6 flex flex-col justify-between"
               >
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="w-full h-56 object-cover"
-                />
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold">{p.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">
-                    {p.desc}
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    {i === 1
+                      ? 'College MIS Portal (Attendance System)'
+                      : 'Vektor Insight – Code Debugger'}
+                  </h3>
+                  <p className="text-secondary text-sm mb-4">
+                    {i === 1
+                      ? 'An intelligent college management system for TKRCET with student and faculty dashboards.'
+                      : 'Multi-language debugging platform with real-time analysis and visualization.'}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {p.tech.map((t) => (
-                      <Badge key={t} className="badge-premium text-xs">{t}</Badge>
-                    ))}
-                  </div>
+                </div>
+                <div className="flex gap-3 mt-4">
                   <Button
-                    variant="ghost"
-                    onClick={() => window.open(p.link, '_blank')}
-                    className="text-blue-600 hover:underline"
+                    className="btn-premium"
+                    onClick={() =>
+                      window.open(
+                        i === 1
+                          ? 'https://tkrcet.vercel.app'
+                          : 'https://vektor-insight.vercel.app',
+                        '_blank'
+                      )
+                    }
                   >
-                    View Project ↗
+                    Live Demo
                   </Button>
-                </CardContent>
+                  <Button
+                    variant="outline"
+                    className="btn-premium-outline"
+                    onClick={() => window.open('https://github.com/AdepuSanjay', '_blank')}
+                  >
+                    Source
+                  </Button>
+                </div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-24 section-bg">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="max-w-5xl mx-auto px-4 text-center"
-        >
-          <h2 className="heading-2 mb-6">Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {['React', 'Node.js', 'MongoDB', 'Next.js', 'Express', 'FastAPI', 'TailwindCSS', 'TypeScript'].map((skill) => (
-              <motion.div
-                key={skill}
-                whileHover={{ scale: 1.05 }}
-                className="premium-card rounded-xl p-4 text-sm font-medium text-slate-700 dark:text-slate-300"
-              >
-                {skill}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-24 bg-slate-50 dark:bg-slate-900 section-bg">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="max-w-xl mx-auto px-4 text-center"
-        >
-          <h2 className="heading-2 mb-6">Get in Touch</h2>
-          <form onSubmit={handleSubmit} className="space-y-5 bg-white/80 dark:bg-slate-800/80 p-6 rounded-2xl backdrop-blur-xl shadow-xl border border-slate-200/50 dark:border-slate-700/50">
+      {/* Contact */}
+      <section id="contact" className="py-24 border-t border-border">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-semibold mb-6">Contact</h2>
+          <p className="text-secondary mb-8">
+            Let's collaborate or discuss new opportunities.
+          </p>
+          <form onSubmit={handleSubmit} className="space-y-6 text-left">
             <div>
-              <Label>Name</Label>
-              <Input className="form-input-premium" required />
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" placeholder="Your name" className="form-input-premium" required />
             </div>
             <div>
-              <Label>Email</Label>
-              <Input type="email" className="form-input-premium" required />
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="Your email" className="form-input-premium" required />
             </div>
             <div>
-              <Label>Message</Label>
-              <Textarea rows={5} className="form-input-premium" required />
+              <Label htmlFor="message">Message</Label>
+              <Textarea id="message" rows={5} placeholder="Type your message..." className="form-input-premium" required />
             </div>
-            <Button
-              type="submit"
-              disabled={isSending}
-              className="btn-premium w-full"
-            >
+            <Button type="submit" className="btn-premium w-full" disabled={isSending}>
               {isSending ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" /> Sending...
                 </>
               ) : (
                 <>
-                  Send Message <Send className="ml-2 h-4 w-4" />
+                  Send Message <Send className="h-4 w-4 ml-2" />
                 </>
               )}
             </Button>
-
-            {isSent && (
-              <motion.p
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-green-600 font-medium mt-3"
-              >
-                ✅ Message sent successfully!
-              </motion.p>
-            )}
           </form>
-        </motion.div>
+          <div className="flex justify-center space-x-6 mt-10">
+            <Github className="cursor-pointer hover:text-primary" onClick={() => window.open(socialLinks.github)} />
+            <Linkedin className="cursor-pointer hover:text-primary" onClick={() => window.open(socialLinks.linkedin)} />
+            <Mail className="cursor-pointer hover:text-primary" onClick={() => window.open(socialLinks.email)} />
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 text-center border-t border-slate-200/50 dark:border-slate-800/50">
-        <p className="text-slate-500 text-sm">© 2025 Adepu Sanjay. All rights reserved.</p>
-        <div className="flex justify-center gap-4 mt-3">
-          <Button variant="ghost" size="icon" onClick={() => window.open(socialLinks.github, '_blank')}>
-            <Github />
-          </Button>
-          <Button variant="ghost" size="icon" onClick={() => window.open(socialLinks.linkedin, '_blank')}>
-            <Linkedin />
-          </Button>
-          <Button variant="ghost" size="icon" onClick={() => window.open(socialLinks.email, '_blank')}>
-            <Mail />
-          </Button>
-        </div>
+      <footer className="py-10 border-t border-border text-center text-secondary text-sm">
+        © {new Date().getFullYear()} Adepu Sanjay. All rights reserved.
       </footer>
-    </main>
+    </div>
   )
 }

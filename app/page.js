@@ -213,18 +213,40 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll)    
   }, [])    
   
-  // Handle form submission    
-  const handleSubmit = async (e) => {    
-    e.preventDefault()    
-    setIsSending(true)    
-  
-    // Simulate API call    
-    setTimeout(() => {    
-      setIsSending(false)    
-      alert('Message sent successfully!')    
-      e.target.reset()    
-    }, 2000)    
-  }    
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSending(true);
+
+  const formData = new FormData(e.target);
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    message: formData.get("message"),
+  };
+
+  try {
+    const response = await fetch("https://sanjayadepu-ax58.vercel.app/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("Message sent successfully!");
+      e.target.reset();
+    } else {
+      alert("Failed to send message: " + result.message);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An error occurred while sending your message.");
+  } finally {
+    setIsSending(false);
+  }
+};
+
   
   // Video control functions  
   const toggleVideoPlayback = (projectId, videoElement) => {  

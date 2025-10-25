@@ -114,7 +114,7 @@ export default function Portfolio() {
   const achievements = [    
     {    
       id: 1,    
-      title: 'AI-Driven Drowsiness Detection System | Team Member (Grant Approved - Development Phase)',    
+      title: 'AI-Driven Drowsiness Detection System |  (Grant Approved - Development Phase)',    
       description: [    
         'Part of a 3-member student team that secured a ₹15 Lakh grant from the Ministry of MSME',    
         'Project focuses on road safety through AI analysis of driver alertness',    

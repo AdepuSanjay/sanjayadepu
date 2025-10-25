@@ -224,7 +224,7 @@ export default function Portfolio() {
   };
 
   try {
-    const response = await fetch("https://sanjayadepu-ax58.vercel.app/contact", {
+    const response = await fetch("https://sanjayadepu-ax58.vercel.app/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
